@@ -39,17 +39,17 @@ CREATE TABLE IF NOT EXISTS System (
 );
 
 /* inserting data into table System*/
-INSERT INTO Game  VALUES('SEP1DQ01', 'Wii U', 'CSP1DQ01', '18-11-2012', '32');
-INSERT INTO Game  VALUES('SEP1DQ02', 'Wii Black', 'CSP1DQ01', '28-08-2012', '32');
-INSERT INTO Game  VALUES('SEP1DQ03', 'Nintendo 2DS', 'CSP1DQ02', '12-11-2013', '64');
-INSERT INTO Game  VALUES('SEP1DQ04', 'Nintendo 3DS', 'CSP1DQ02', '26-02-2011', '64');
-INSERT INTO Game  VALUES('SEP1DQ05', 'Nintendo Switch', 'CSP1DQ02', '03-03-2017', '64');
-INSERT INTO Game  VALUES('SEP1DQ06', 'Playstation 2', 'CSP1DQ03', '04-03-2000', '64');
-INSERT INTO Game  VALUES('SEP1DQ07', 'Playstation 3', 'CSP1DQ03', '11-11-2006', '64');
-INSERT INTO Game  VALUES('SEP1DQ08', 'Playstation 4', 'CSP1DQ03', '15-11-2013', '64');
-INSERT INTO Game  VALUES('SEP1DQ09', 'Xbox 360', 'CSP1DQ04', '22-11-2005', '64');
-INSERT INTO Game  VALUES('SEP1DQ10', 'Xbox One', 'CSP1DQ04', '22-11-2013', '64');
-INSERT INTO Game  VALUES('SEP1DQ11', 'Xbox One X', 'CSP1DQ04', '10-11-2020', '64');
+INSERT INTO System  VALUES('SEP1DQ01', 'Wii U', 'CSP1DQ01', '18-11-2012', 32);
+INSERT INTO System  VALUES('SEP1DQ02', 'Wii Black', 'CSP1DQ01', '28-08-2012', 32);
+INSERT INTO System  VALUES('SEP1DQ03', 'Nintendo 2DS', 'CSP1DQ02', '12-11-2013', 64);
+INSERT INTO System  VALUES('SEP1DQ04', 'Nintendo 3DS', 'CSP1DQ02', '26-02-2011', 64);
+INSERT INTO System  VALUES('SEP1DQ05', 'Nintendo Switch', 'CSP1DQ02', '03-03-2017', 64);
+INSERT INTO System  VALUES('SEP1DQ06', 'Playstation 2', 'CSP1DQ03', '04-03-2000', 64);
+INSERT INTO System  VALUES('SEP1DQ07', 'Playstation 3', 'CSP1DQ03', '11-11-2006', 64);
+INSERT INTO System  VALUES('SEP1DQ08', 'Playstation 4', 'CSP1DQ03', '15-11-2013', 64);
+INSERT INTO System  VALUES('SEP1DQ09', 'Xbox 360', 'CSP1DQ04', '22-11-2005', 64);
+INSERT INTO System  VALUES('SEP1DQ10', 'Xbox One', 'CSP1DQ04', '22-11-2013', 64);
+INSERT INTO System  VALUES('SEP1DQ11', 'Xbox One X', 'CSP1DQ04', '10-11-2020', 64);
 
 CREATE TABLE IF NOT EXISTS DevelopmentStudio (
 	`DSID` varchar(8) NOT NULL, 
@@ -93,10 +93,10 @@ CREATE TABLE IF NOT EXISTS ConsoleLine (
 );
 
 /* inserting data into table ConsoleLine*/
-INSERT INTO Game  VALUES('CSP1DQ01', 'Wii', '19-11-2006', '32');
-INSERT INTO Game  VALUES('CSP1DQ02', 'Nintendo', '21-11-2004', '64');
-INSERT INTO Game  VALUES('CSP1DQ03', 'Playstation','3-12-1994', '64');
-INSERT INTO Game  VALUES('CSP1DQ04', 'Xbox', '15-11-2001', '64');
+INSERT INTO ConsoleLine  VALUES('CSP1DQ01', 'Wii', '19-11-2006', 32);
+INSERT INTO ConsoleLine  VALUES('CSP1DQ02', 'Nintendo', '21-11-2004', 64);
+INSERT INTO ConsoleLine  VALUES('CSP1DQ03', 'Playstation','3-12-1994', 64);
+INSERT INTO ConsoleLine  VALUES('CSP1DQ04', 'Xbox', '15-11-2001', 64);
 
 /* supertype of isa-hierarchy */
 /* uses a composite primary key, since foreign keys of the child tables are also composite keys */
