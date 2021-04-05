@@ -16,18 +16,25 @@ CREATE TABLE IF NOT EXISTS Game(
 
 /* inserting data into table Game*/
 INSERT INTO Game VALUES('G1DQAE01', 'D1DQBF01', 'DSP1DQ01', 'Mario Kart', 'Mario Kart 8', 'Race');
-INSERT INTO Game VALUES('G1DQAE02', 'D1DQBF02', 'DSP1DQ02', 'Mario Kart', 'Mario Kart 7', 'Race');
-INSERT INTO Game VALUES('G1DQAE03', 'D1DQBF03', 'DSP1DQ03', 'Crysis series', 'Crysis 3', 'Shooter');
-INSERT INTO Game VALUES('G1DQAE04', 'D1DQBF04', 'DSP1DQ04', 'Call of Duty', 'Call of Duty Ghosts', 'Shooter');
-INSERT INTO Game VALUES('G1DQAE05', 'D1DQBF05', 'DSP1DQ05', 'Sonic Knight', 'Sonic and the black knight', 'Adventure');
-INSERT INTO Game VALUES('G1DQAE06', 'D1DQBF06', 'DSP1DQ06', 'Mario party', 'Mario Party 9', 'Family');
-INSERT INTO Game VALUES('G1DQAE07', 'D1DQBF07', 'DSP1DQ07', 'Sonic platform', 'Sonic Boom', 'Adventure');
-INSERT INTO Game VALUES('G1DQAE08', 'D1DQBF08', 'DSP1DQ08', 'Mario party', 'Super Mario Party', 'Family');
-INSERT INTO Game VALUES('G1DQAE09', 'D1DQBF09', 'DSP1DQ09', 'Sonic platform', 'Sonic Forces', 'Adventure');
-INSERT INTO Game VALUES('G1DQAE10', 'D1DQBF10', 'DSP1DQ10', 'Call of Duty', 'Call of Duty 2', 'Shooter');
-INSERT INTO Game VALUES('G1DQAE11', 'D1DQBF11', 'DSP1DQ11', 'Sonic Race', 'Sonic Riders', 'Race');
-INSERT INTO Game VALUES('G1DQAE12', 'D1DQBF12', 'DSP1DQ12', 'Crysis series', 'Crysis 2', 'Shooter');
-INSERT INTO Game VALUES('G1DQAE11', 'D1DQBF11', 'DSP1DQ11', 'Sonic Race', 'Sonic Riders', 'Race');
+INSERT INTO Game VALUES('G1DQAE02', 'D1DQBF02', 'DSP1DQ01', 'Mario Kart', 'Mario Kart 7', 'Race');
+INSERT INTO Game VALUES('G1DQAE03', 'D1DQBF03', 'DSP1DQ02', 'Crysis series', 'Crysis 3', 'Shooter');
+INSERT INTO Game VALUES('G1DQAE04', 'D1DQBF04', 'DSP1DQ03', 'Call of Duty', 'Call of Duty Ghosts', 'Shooter');
+INSERT INTO Game VALUES('G1DQAE05', 'D1DQBF05', 'DSP1DQ04', 'Sonic Knight', 'Sonic and the black knight', 'Adventure');
+INSERT INTO Game VALUES('G1DQAE06', 'D1DQBF06', 'DSP1DQ01', 'Mario Party', 'Mario Party 9', 'Family');
+INSERT INTO Game VALUES('G1DQAE07', 'D1DQBF07', 'DSP1DQ04', 'Sonic Platform', 'Sonic Boom', 'Adventure');
+INSERT INTO Game VALUES('G1DQAE08', 'D1DQBF08', 'DSP1DQ01', 'Mario Party', 'Super Mario Party', 'Family');
+INSERT INTO Game VALUES('G1DQAE09', 'D1DQBF09', 'DSP1DQ04', 'Sonic Platform', 'Sonic Forces', 'Adventure');
+INSERT INTO Game VALUES('G1DQAE10', 'D1DQBF10', 'DSP1DQ03', 'Call of Duty', 'Call of Duty 2', 'Shooter');
+INSERT INTO Game VALUES('G1DQAE11', 'D1DQBF11', 'DSP1DQ04', 'Sonic Race', 'Sonic Riders', 'Race');
+INSERT INTO Game VALUES('G1DQAE12', 'D1DQBF12', 'DSP1DQ02', 'Crysis series', 'Crysis 2', 'Shooter');
+INSERT INTO Game VALUES('G1DQAE13', 'D1DQBF13', 'DSP1DQ04', 'Sonic Knight', 'Sonic Black Knight 2', 'Adventure');
+INSERT INTO Game VALUES('G1DQAE14', 'D1DQBF14', 'DSP1DQ03', 'Call of Duty', 'Call of Duty Black Ops 3','Shooter');
+INSERT INTO Game VALUES('G1DQAE15', 'D1DQBF15', 'DSP1DQ01', 'Zelda Adventure', 'Zelda Breath of the wild', 'Adventure');
+INSERT INTO Game VALUES('G1DQAE16', 'D1DQBF16', 'DSP1DQ01', 'Zelda Adventure', 'The Legend of Zelda Skyward Sword', 'Adventure');
+INSERT INTO Game VALUES('G1DQAE17', 'D1DQBF17', 'DSP1DQ01', 'Zelda Adventure', 'The Legend of Zelda: Ocarina of Time', 'Adventure');
+INSERT INTO Game VALUES('G1DQAE18', 'D1DQBF18', 'DSP1DQ01', 'Mario Platform', 'Super Mario Bros.Wii', 'Adventure');
+INSERT INTO Game VALUES('G1DQAE19', 'D1DQBF19', 'DSP1DQ01', 'Mario Galaxy', 'Mario Galaxy 1', 'Adventure');
+INSERT INTO Game VALUES('G1DQAE20', 'D1DQBF20', 'DSP1DQ01', 'Mario Galaxy', 'Mario Galaxy 2', 'Adventure');
 
 CREATE TABLE IF NOT EXISTS System (
 	`SystemID` varchar(8) NOT NULL, 
@@ -68,6 +75,12 @@ CREATE TABLE IF NOT EXISTS Publisher (
 	CONSTRAINT PK_PublisherID PRIMARY KEY(PublisherID)
 );
 
+/* inserting data into table Publisher*/
+INSERT INTO Publisher VALUES('DSP1DQ01', 'Nintendo', 'Japan', '1800255370');
+INSERT INTO Publisher VALUES('DSP1DQ02', 'Eletronic Arts', 'North America', '0208083219');
+INSERT INTO Publisher VALUES('DSP1DQ03', 'Activision', 'North America', '1310255200');
+INSERT INTO Publisher VALUES('DSP1DQ04', 'Sega', 'Japan', ' 0044845301');
+
 CREATE TABLE IF NOT EXISTS SubFranchise (
 	`SubfranchiseName` varchar(30) NOT NULL,
 	`FranchiseName` varchar(30) NOT NULL,
@@ -95,6 +108,7 @@ CREATE TABLE IF NOT EXISTS GameSystem (
 	CONSTRAINT FK_GameID FOREIGN KEY (GameID) REFERENCES Game(GameID)
 );
 
+/* inserting data into table GameSystem*/
 INSERT INTO GameSystem VALUES('G1DQAE01', 'SEP1DQ01');      
 INSERT INTO GameSystem VALUES('G1DQAE02', 'SEP1DQ03');
 INSERT INTO GameSystem VALUES('G1DQAE02', 'SEP1DQ04');
@@ -125,18 +139,21 @@ INSERT INTO GameSystem VALUES('G1DQAE10', 'SEP1DQ09');
 INSERT INTO GameSystem VALUES('G1DQAE11', 'SEP1DQ06');
 INSERT INTO GameSystem VALUES('G1DQAE12', 'SEP1DQ07');
 INSERT INTO GameSystem VALUES('G1DQAE12', 'SEP1DQ09');
-INSERT INTO GameSystem VALUES('gf', 'sf');
-INSERT INTO GameSystem VALUES('fd', 'sf');
-INSERT INTO GameSystem VALUES('G1DfdQAE04', 'ew');
-INSERT INTO GameSystem VALUES('gf', 'sf');
-INSERT INTO GameSystem VALUES('fd', 'fs');
-INSERT INTO GameSystem VALUES('G1DfdQAE04', 'sdf');
-INSERT INTO GameSystem VALUES('gf', 'fs');
-INSERT INTO GameSystem VALUES('fd', 'fs');
-INSERT INTO GameSystem VALUES('G1DfdQAE04', 'fs');
-INSERT INTO GameSystem VALUES('gf', 'sf');
-INSERT INTO GameSystem VALUES('fd', 'fs');
-INSERT INTO GameSystem VALUES('G1DfdQAE04', 'fs')
+INSERT INTO GameSystem VALUES('G1DQAE13', 'SEP1DQ01');
+INSERT INTO GameSystem VALUES('G1DQAE13', 'SEP1DQ05');
+INSERT INTO GameSystem VALUES('G1DQAE14', 'SEP1DQ07');
+INSERT INTO GameSystem VALUES('G1DQAE14', 'SEP1DQ08');
+INSERT INTO GameSystem VALUES('G1DQAE14', 'SEP1DQ01');
+INSERT INTO GameSystem VALUES('G1DQAE14', 'SEP1DQ09');
+INSERT INTO GameSystem VALUES('G1DQAE14', 'SEP1DQ10');
+INSERT INTO GameSystem VALUES('G1DQAE15', 'SEP1DQ05');
+INSERT INTO GameSystem VALUES('G1DQAE16', 'SEP1DQ02');
+INSERT INTO GameSystem VALUES('G1DQAE16', 'SEP1DQ05');
+INSERT INTO GameSystem VALUES('G1DQAE17', 'SEP1DQ03');
+INSERT INTO GameSystem VALUES('G1DQAE17', 'SEP1DQ04')
+INSERT INTO GameSystem VALUES('G1DQAE18', 'SEP1DQ02');
+INSERT INTO GameSystem VALUES('G1DQAE19', 'SEP1DQ02');
+INSERT INTO GameSystem VALUES('G1DQAE20', 'SEP1DQ02');
 
 /* Lower level entities*/
 --//////////////////////
