@@ -5,28 +5,26 @@ CREATE TABLE IF NOT EXISTS Game(
 	`DSID` varchar(8) NOT NULL,
 	`PublisherID` varchar(8) NOT NULL,
 	`SubfranchiseName` varchar(30) NOT NULL,
-	`SystemID` varchar(8) NOT NULL,
 	`Title` char(25) NOT NULL,
 	`Genre` char(15) NOT NULL,
 	CONSTRAINT PK_GameID PRIMARY KEY (GameID),
 	CONSTRAINT FK_DSID FOREIGN KEY (DSID) REFERENCES DevelopmentStudio(DSID),
 	CONSTRAINT FK_PublisherID FOREIGN KEY (PublisherID) REFERENCES Publisher (PublisherID),
 	CONSTRAINT FK_SubFranchise FOREIGN KEY (SubfranchiseName) REFERENCES SubFranchise (SubfranchiseName),
-	CONSTRAINT FK_SystemID FOREIGN KEY (SystemID) REFERENCES System(SystemID),
 	CONSTRAINT FK_GameID FOREIGN KEY (GameID) REFERENCES RegionVersion(GameID)
 );
 
 /* inserting data into table Game*/
-INSERT INTO Game  VALUES('G1DQAE01', 'D1DQBF01', 'DSP1DQ01', 'Mario Kart', 'SEP1DQ01', 'Mario Kart 8', 'Race');
-INSERT INTO Game  VALUES('G1DQAE02', 'D1DQBF02', 'DSP1DQ02', 'Mario Kart', 'SEP1DQ03', 'Mario Kart 7', 'Race');
-INSERT INTO Game  VALUES('G1DQAE03', 'D1DQBF03', 'DSP1DQ03', 'Mario Kart', 'SEP1DQ04', 'Mario Kart 7', 'Race');
-INSERT INTO Game  VALUES('G1DQAE04', 'D1DQBF04', 'DSP1DQ04', 'Game 1', 'SEP1DQ01', 'Game 1', 'P1DQ01');
-INSERT INTO Game  VALUES('G1DQAE05', 'D1DQBF05', 'DSP1DQ05', 'Game 1', 'SEP1DQ01', 'Game 1', 'P1DQ01');
-INSERT INTO Game  VALUES('G1DQAE06', 'D1DQBF06', 'DSP1DQ06', 'Game 1', 'SEP1DQ01', 'Game 1', 'P1DQ01');
-INSERT INTO Game  VALUES('G1DQAE07', 'D1DQBF07', 'DSP1DQ07', 'Crysis series', 'SEP1DQ01', 'Crysis 3', 'Shooter');
-INSERT INTO Game  VALUES('G1DQAE08', 'D1DQBF08', 'DSP1DQ08', 'Game 1', 'SEP1DQ01', 'Game 1', 'P1DQ01');
-INSERT INTO Game  VALUES('G1DQAE09', 'D1DQBF09', 'DSP1DQ09', 'Game 1', 'SEP1DQ01', 'Game 1', 'P1DQ01');
-INSERT INTO Game  VALUES('G1DQAE10', 'D1DQBF10', 'DSP1DQ10', 'Game 1', 'SEP1DQ01', 'Game 1', 'P1DQ01');
+INSERT INTO Game  VALUES('G1DQAE01', 'D1DQBF01', 'DSP1DQ01', 'Mario Kart', 'Mario Kart 8', 'Race');
+INSERT INTO Game  VALUES('G1DQAE02', 'D1DQBF02', 'DSP1DQ02', 'Mario Kart', 'Mario Kart 7', 'Race');
+INSERT INTO Game  VALUES('G1DQAE03', 'D1DQBF03', 'DSP1DQ03', 'Crysis series', 'Crysis 3', 'Shooter');
+INSERT INTO Game  VALUES('G1DQAE04', 'D1DQBF04', 'DSP1DQ04', 'Game 1', 'Game 1', 'P1DQ01');
+INSERT INTO Game  VALUES('G1DQAE05', 'D1DQBF05', 'DSP1DQ05', 'Game 1', , 'Game 1', 'P1DQ01');
+INSERT INTO Game  VALUES('G1DQAE06', 'D1DQBF06', 'DSP1DQ06', 'Game 1', 'Game 1', 'P1DQ01');
+INSERT INTO Game  VALUES('G1DQAE07', 'D1DQBF07', 'DSP1DQ07', 'game', 'sg', 'gd');
+INSERT INTO Game  VALUES('G1DQAE08', 'D1DQBF08', 'DSP1DQ08', 'Game 1', 'Game 1', 'P1DQ01');
+INSERT INTO Game  VALUES('G1DQAE09', 'D1DQBF09', 'DSP1DQ09', 'Game 1', 'Game 1', 'P1DQ01');
+INSERT INTO Game  VALUES('G1DQAE10', 'D1DQBF10', 'DSP1DQ10', 'Game 1', 'Game 1', 'P1DQ01');
 
 CREATE TABLE IF NOT EXISTS System (
 	`SystemID` varchar(8) NOT NULL, 
@@ -85,7 +83,26 @@ CREATE TABLE IF NOT EXISTS RegionVersion (
 /* Intersection Tables*/
 --//////////////////////
 
+/* connects table Game with System */
+CREATE TABLE IF NOT EXISTS GameSystem (
+	`GameID` varchar(8) NOT NULL,
+	`SystemID` varchar(8) NOT NULL,
+	CONSTRAINT PK_GameSystem PRIMARY KEY(GameID, SystemID),
+	CONSTRAINT FK_SystemID FOREIGN KEY (SystemID) REFERENCES System(SystemID),
+	CONSTRAINT FK_GameID FOREIGN KEY (GameID) REFERENCES Game(GameID)
+);
 
+INSERT INTO System  VALUES('G1DQAE01', 'SEP1DQ01');      
+INSERT INTO System  VALUES('G1DQAE02', 'SEP1DQ02');
+INSERT INTO System  VALUES('G1DQAE03', 'SEP1DQ03');
+INSERT INTO System  VALUES('G1DQAE01', 'SEP1DQ04');
+INSERT INTO System  VALUES('G1DQAE01', 'SEP1DQ05');
+INSERT INTO System  VALUES('G1DQAE01', 'SEP1DQ06');
+INSERT INTO System  VALUES('G1DQAE01', 'SEP1DQ07');
+INSERT INTO System  VALUES('G1DQAE01', 'SEP1DQ08');
+INSERT INTO System  VALUES('G1DQAE01', 'SEP1DQ09');
+INSERT INTO System  VALUES('G1DQAE01', 'SEP1DQ10');
+INSERT INTO System  VALUES('G1DQAE01', 'SEP1DQ11');
 
 /* Lower level entities*/
 --//////////////////////
