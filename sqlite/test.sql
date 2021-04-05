@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS Game(
 /* inserting data into table Game*/
 INSERT INTO Game  VALUES('G1DQAE01', 'D1DQBF01', 'DSP1DQ01', 'Mario Kart', 'SEP1DQ01', 'Mario Kart 8', 'Race');
 INSERT INTO Game  VALUES('G1DQAE02', 'D1DQBF02', 'DSP1DQ02', 'Mario Kart', 'SEP1DQ03', 'Mario Kart 7', 'Race');
-INSERT INTO Game  VALUES('G1DQAE03', 'D1DQBF03', 'DSP1DQ03', 'Mario Kart', 'SEP1DQ03', 'Mario Kart 7', 'Race');
+INSERT INTO Game  VALUES('G1DQAE03', 'D1DQBF03', 'DSP1DQ03', 'Mario Kart', 'SEP1DQ04', 'Mario Kart 7', 'Race');
 INSERT INTO Game  VALUES('G1DQAE04', 'D1DQBF04', 'DSP1DQ04', 'Game 1', 'SEP1DQ01', 'Game 1', 'P1DQ01');
 INSERT INTO Game  VALUES('G1DQAE05', 'D1DQBF05', 'DSP1DQ05', 'Game 1', 'SEP1DQ01', 'Game 1', 'P1DQ01');
 INSERT INTO Game  VALUES('G1DQAE06', 'D1DQBF06', 'DSP1DQ06', 'Game 1', 'SEP1DQ01', 'Game 1', 'P1DQ01');
