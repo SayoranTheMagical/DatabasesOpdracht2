@@ -16,6 +16,20 @@ CREATE TABLE IF NOT EXISTS Game(
 	CONSTRAINT FK_GameID FOREIGN KEY (GameID) REFERENCES RegionVersion(GameID)
 );
 
+/* inserting data into table Game*/
+INSERT INTO Game  VALUES('G1DQAE01', 'D1DQBF01', 'DSP1DQ01', 'Mario Kart 8', 'SEP1DQ01', 'Mario Kart 8', 'Race');
+INSERT INTO Game  VALUES('G1DQAE02', 'D1DQBF02', 'DSP1DQ02', 'Mario Kart DS', 'SEP1DQ02', 'Mario Kart DS', 'Race');
+INSERT INTO Game  VALUES('G1DQAE03', 'D1DQBF03', 'DSP1DQ03', 'Crysis', 'SEP1DQ01', 'Crysis 3', 'P1DQ01');
+INSERT INTO Game  VALUES('G1DQAE04', 'D1DQBF04', 'DSP1DQ04', 'Game 1', 'SEP1DQ01', 'Game 1', 'P1DQ01');
+INSERT INTO Game  VALUES('G1DQAE05', 'D1DQBF05', 'DSP1DQ05', 'Game 1', 'SEP1DQ01', 'Game 1', 'P1DQ01');
+INSERT INTO Game  VALUES('G1DQAE06', 'D1DQBF06', 'DSP1DQ06', 'Game 1', 'SEP1DQ01', 'Game 1', 'P1DQ01');
+INSERT INTO Game  VALUES('G1DQAE07', 'D1DQBF07', 'DSP1DQ07', 'Crysis 3', 'SEP1DQ01', 'Crysis 3', 'P1DQ01');
+INSERT INTO Game  VALUES('G1DQAE08', 'D1DQBF08', 'DSP1DQ08', 'Game 1', 'SEP1DQ01', 'Game 1', 'P1DQ01');
+INSERT INTO Game  VALUES('G1DQAE09', 'D1DQBF09', 'DSP1DQ09', 'Game 1', 'SEP1DQ01', 'Game 1', 'P1DQ01');
+INSERT INTO Game  VALUES('G1DQAE10', 'D1DQBF10', 'DSP1DQ10', 'Game 1', 'SEP1DQ01', 'Game 1', 'P1DQ01');
+
+
+
 CREATE TABLE IF NOT EXISTS System (
 	`SystemID` varchar(8) NOT NULL, 
 	`Name` varchar(20) NOT NULL, 
@@ -25,6 +39,19 @@ CREATE TABLE IF NOT EXISTS System (
 	CONSTRAINT PK_SystemID PRIMARY KEY (SystemID),
 	CONSTRAINT FK_ConsoleLineID FOREIGN KEY (ConsoleLineID) REFERENCES ConsoleLine(ConsoleLineID)
 );
+
+/* inserting data into table System*/
+INSERT INTO Game  VALUES('SEP1DQ01', 'Wii U', 'CSP1DQ01', '18-11-2012', '64');
+INSERT INTO Game  VALUES('SEP1DQ02', 'Wii', 'CSP1DQ01', '19-11-2016', '32');
+INSERT INTO Game  VALUES('SEP1DQ03', 'Nintendo DS', 'CSP1DQ02', '19-11-2016', '32');
+INSERT INTO Game  VALUES('SEP1DQ08', 'Nintendo Switch', 'CSP1DQ02', '19-11-2016', '32');
+INSERT INTO Game  VALUES('SEP1DQ04', 'Playstation 3', 'CSP1DQ03', '19-11-2016', '32');
+INSERT INTO Game  VALUES('SEP1DQ05', 'Playstation 4', 'CSP1DQ03', '19-11-2016', '32');
+INSERT INTO Game  VALUES('SEP1DQ06', 'Xbox one', 'CSP1DQ04', '19-11-2016', '32');
+INSERT INTO Game  VALUES('SEP1DQ07', 'Xbox 360', 'CSP1DQ04', '19-11-2016', '32');
+INSERT INTO Game  VALUES('SEP1DQ08', 'Xbox one X', 'CSP1DQ01', '19-11-2016', '32');
+INSERT INTO Game  VALUES('SEP1DQ09', 'Wii', 'CSP1DQ01', '19-11-2016', '32');
+INSERT INTO Game  VALUES('SEP1DQ10', 'Wii', 'CSP1DQ01', '19-11-2016', '32');
 
 CREATE TABLE IF NOT EXISTS DevelopmentStudio (
 	`DSID` varchar(8) NOT NULL, 
@@ -66,6 +93,12 @@ CREATE TABLE IF NOT EXISTS ConsoleLine (
 	`Bitsize` tinyint NOT NULL,
 	CONSTRAINT PK_ConsoleLineID PRIMARY KEY(ConsoleLineID)
 );
+
+/* inserting data into table ConsoleLine*/
+INSERT INTO Game  VALUES('CSP1DQ01', 'Wii', '19-11-2016', '32');
+INSERT INTO Game  VALUES('CSP1DQ02', 'Nintendo', '19-11-2016', '64');
+INSERT INTO Game  VALUES('CSP1DQ03', 'Playstation','19-11-2016', '32');
+INSERT INTO Game  VALUES('CSP1DQ04', 'Xbox', '19-11-2016', '32');
 
 /* supertype of isa-hierarchy */
 /* uses a composite primary key, since foreign keys of the child tables are also composite keys */
