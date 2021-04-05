@@ -82,6 +82,11 @@ CREATE TABLE IF NOT EXISTS RegionVersion (
 	CONSTRAINT PK_GameID PRIMARY KEY(GameID)
 );
 
+/* Intersection Tables*/
+--//////////////////////
+
+
+
 /* Lower level entities*/
 --//////////////////////
 CREATE TABLE IF NOT EXISTS ConsoleLine (
