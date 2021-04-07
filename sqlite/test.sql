@@ -111,17 +111,16 @@ INSERT INTO SubFranchise VALUES('Mario 3D', 'Mario', '23-06-1996');
 CREATE TABLE IF NOT EXISTS RegionVersion (
 	`RegionID` varchar(8) NOT NULL,
 	`RegionName` char(10) NOT NULL,
-	`Release` datetime NOT NULL,   
 	CONSTRAINT PK_RegionID PRIMARY KEY(RegionID)
 );
 
 /* inserting data into table RegionVersion*/
-INSERT INTO RegionVersion VALUES('RTP1DQ01', 'NTSC-U', '05-12-2005');
-INSERT INTO RegionVersion VALUES('RTP1DQ02', 'NTSC-C', '24-12-2005');
-INSERT INTO RegionVersion VALUES('RTP1DQ03', 'NTSC-J', '02-12-2005');
-INSERT INTO RegionVersion VALUES('RTP1DQ04', 'PAL-A', '12-08-2006');
-INSERT INTO RegionVersion VALUES('RTP1DQ05', 'PAL-B', '22-08-2006');
-INSERT INTO RegionVersion VALUES('RTP1DQ06', 'Asia', '21-12-2005');
+INSERT INTO RegionVersion VALUES('RTP1DQ01', 'NTSC-U');
+INSERT INTO RegionVersion VALUES('RTP1DQ02', 'NTSC-C');
+INSERT INTO RegionVersion VALUES('RTP1DQ03', 'NTSC-J');
+INSERT INTO RegionVersion VALUES('RTP1DQ04', 'PAL-A');
+INSERT INTO RegionVersion VALUES('RTP1DQ05', 'PAL-B');
+INSERT INTO RegionVersion VALUES('RTP1DQ06', 'Asia');
 
 /* Intersection Tables*/
 --//////////////////////
