@@ -23,6 +23,6 @@ FROM
         Worker
     INNER JOIN DevelopmentStudio ON DevelopmentStudio.DSID = Worker.DSID 
     GROUP BY
-        DevelopmentStudio.id);    
+        DevelopmentStudio.DSID);    
 
 
