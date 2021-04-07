@@ -1,16 +1,16 @@
 /* Higher level entities*/
 --///////////////////////
 CREATE TABLE IF NOT EXISTS Game(
-	`GameID` varchar(8) NOT NULL,
+	`GameID` varchar(8) NOT NULL,  
 	`DSID` varchar(8) NOT NULL,
 	`PublisherID` varchar(8) NOT NULL,
 	`SubfranchiseName` varchar(30) NOT NULL,
 	`Title` char(25) NOT NULL,
 	`Genre` char(15) NOT NULL,
 	CONSTRAINT PK_GameID PRIMARY KEY (GameID),
-	CONSTRAINT FK_DSID FOREIGN KEY (DSID) REFERENCES DevelopmentStudio(DSID),
-	CONSTRAINT FK_PublisherID FOREIGN KEY (PublisherID) REFERENCES Publisher (PublisherID),
-	CONSTRAINT FK_SubFranchise FOREIGN KEY (SubfranchiseName) REFERENCES SubFranchise (SubfranchiseName)
+	CONSTRAINT FK_DSID FOREIGN KEY (DSID) REFERENCES DevelopmentStudio(DSID) ON UPDATE CASCADE,
+	CONSTRAINT FK_PublisherID FOREIGN KEY (PublisherID) REFERENCES Publisher (PublisherID) ON UPDATE CASCADE,
+	CONSTRAINT FK_SubFranchise FOREIGN KEY (SubfranchiseName) REFERENCES  SubFranchise (SubfranchiseName) ON UPDATE CASCADE
 );
 
 /* inserting data into table Game*/
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS System (
 	`ReleaseDate` datetime NOT NULL,
 	`Bitsize` tinyint NOT NULL,
 	CONSTRAINT PK_SystemID PRIMARY KEY (SystemID),
-	CONSTRAINT FK_ConsoleLineID FOREIGN KEY (ConsoleLineID) REFERENCES ConsoleLine(ConsoleLineID)
+	CONSTRAINT FK_ConsoleLineID FOREIGN KEY (ConsoleLineID) REFERENCES ConsoleLine(ConsoleLineID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 /* inserting data into table System*/
@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS SubFranchise (
 	`FranchiseName` varchar(30) NOT NULL,
 	`Release` datetime NOT NULL,
 	CONSTRAINT PK_Subfranchise PRIMARY KEY(SubfranchiseName),
-	CONSTRAINT FK_Franchise FOREIGN KEY (FranchiseName) REFERENCES GameFranchise(FranchiseName) 	
+	CONSTRAINT FK_Franchise FOREIGN KEY (FranchiseName) REFERENCES GameFranchise(FranchiseName) ON UPDATE CASCADE 	
 );
 
 INSERT INTO SubFranchise VALUES('Mario Kart', 'Mario', '27-08-1992');
@@ -130,8 +130,8 @@ CREATE TABLE IF NOT EXISTS GameSystem (
 	`GameID` varchar(8) NOT NULL,
 	`SystemID` varchar(8) NOT NULL,
 	CONSTRAINT PK_GameSystem PRIMARY KEY(GameID, SystemID),
-	CONSTRAINT FK_SystemID FOREIGN KEY (SystemID) REFERENCES System(SystemID),
-	CONSTRAINT FK_GameID FOREIGN KEY (GameID) REFERENCES Game(GameID)
+	CONSTRAINT FK_SystemID FOREIGN KEY (SystemID) REFERENCES System(SystemID) ON UPDATE CASCADE,
+	CONSTRAINT FK_GameID FOREIGN KEY (GameID) REFERENCES Game(GameID) ON UPDATE CASCADE
 );
 
 /* inserting data into table GameSystem*/
@@ -272,7 +272,7 @@ CREATE TABLE IF NOT EXISTS ConsoleLine (
 	`Name` varchar(20) NOT NULL, /* can’t be NULL */
 	`ReleaseDate` datetime NOT NULL,
 	`Bitsize` tinyint NOT NULL,
-	CONSTRAINT PK_ConsoleLineID PRIMARY KEY(ConsoleLineID)
+	CONSTRAINT PK_ConsoleLineID PRIMARY KEY(ConsoleLineID) 
 );
 
 /* inserting data into table ConsoleLine*/
@@ -294,7 +294,7 @@ CREATE TABLE IF NOT EXISTS Worker (
 	`Phone` char(10) NOT NULL,
 	`DateOfBirth` datetime NOT NULL,
     CONSTRAINT PK_UserID PRIMARY KEY (UserID, Function),
-	CONSTRAINT FK_DSID FOREIGN KEY (DSID) REFERENCES DevelopmentStudio(DSID)
+	CONSTRAINT FK_DSID FOREIGN KEY (DSID) REFERENCES DevelopmentStudio(DSID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 INSERT INTO Worker VALUES('U0001NAK', 'DSP1DQ01', 'president', 'Hiroshi', 'Ikeda', '193-1023 Nishishinjuku Shinjuku Mitsuibiru(43-kai)', '7095025502', '03-06-1952');
@@ -336,7 +336,7 @@ CREATE TABLE IF NOT EXISTS DevelopmentDirector (
     `Function` TEXT CHECK(Function IN ('director')) NOT NULL,
 	`Experience` tinyint NOT NULL, 
 	CONSTRAINT PK_UserID PRIMARY KEY (UserID),
-	CONSTRAINT FK_Job FOREIGN KEY (UserID, Function) REFERENCES Worker(UserID, Function)
+	CONSTRAINT FK_Job FOREIGN KEY (UserID, Function) REFERENCES Worker(UserID, Function) ON DELETE CASCADE 
 );
 
 INSERT INTO DevelopmentDirector VALUES('U0002NAK', 'director', '24');
@@ -361,7 +361,7 @@ CREATE TABLE IF NOT EXISTS GameDesigner (
     `Function` TEXT CHECK(Function IN ('designer')) NOT NULL,
 	`Experience` tinyint NOT NULL,
 	CONSTRAINT PK_UserID PRIMARY KEY (UserID),
-	CONSTRAINT FK_Job FOREIGN KEY (UserID, Function) REFERENCES Worker(UserID, Function)
+	CONSTRAINT FK_Job FOREIGN KEY (UserID, Function) REFERENCES Worker(UserID, Function) ON DELETE CASCADE 
 );
 
 INSERT INTO GameDesigner VALUES('U0003NAK', 'designer', '15');
@@ -380,7 +380,7 @@ CREATE TABLE IF NOT EXISTS President (
     `Function` TEXT CHECK(Function IN ('president')) NOT NULL,
 	`TimeframeOfPresidency` varchar(10) NOT NULL,
 	CONSTRAINT PK_UserID PRIMARY KEY (UserID),
-	CONSTRAINT FK_Job FOREIGN KEY (UserID, Function) REFERENCES Worker(UserID, Function)
+	CONSTRAINT FK_Job FOREIGN KEY (UserID, Function) REFERENCES Worker(UserID, Function) ON DELETE CASCADE 
 );
 
 INSERT INTO President VALUES('U0001NAK', 'president', '28');
