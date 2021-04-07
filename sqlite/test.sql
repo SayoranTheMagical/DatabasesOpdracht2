@@ -1,39 +1,201 @@
 /* Higher level entities*/
 --///////////////////////
-CREATE TABLE IF NOT EXISTS Game(
-	`GameID` varchar(8) NOT NULL,
-	`DSID` varchar(8) NOT NULL,
-	`PublisherID` varchar(8) NOT NULL,
-	`SubfranchiseName` varchar(30) NOT NULL,
-	`Title` char(25) NOT NULL,
-	`Genre` char(15) NOT NULL,
+
+CREATE TABLE IF NOT EXISTS Game (
+	'GameID' varchar(8) NOT NULL,
+	'SystemID' varchar(8) NOT NULL,
+	'Title' char(25) NOT NULL,
 	CONSTRAINT PK_GameID PRIMARY KEY (GameID),
-	CONSTRAINT FK_DSID FOREIGN KEY (DSID) REFERENCES DevelopmentStudio(DSID),
-	CONSTRAINT FK_PublisherID FOREIGN KEY (PublisherID) REFERENCES Publisher (PublisherID),
-	CONSTRAINT FK_SubFranchise FOREIGN KEY (SubfranchiseName) REFERENCES SubFranchise (SubfranchiseName)
+	CONSTRAINT FK_Title FOREIGN KEY (Title) REFERENCES GameData(Title),
+	CONSTRAINT FK_SystemID FOREIGN KEY (SystemID) REFERENCES System(SystemID) 
 );
 
 /* inserting data into table Game*/
-INSERT INTO Game VALUES('G1DQAE01', 'D1DQBF01', 'DSP1DQ01', 'Mario Kart', 'Mario Kart 8', 'Race');
-INSERT INTO Game VALUES('G1DQAE02', 'D1DQBF01', 'DSP1DQ01', 'Mario Kart', 'Mario Kart 7', 'Race');
-INSERT INTO Game VALUES('G1DQAE03', 'D1DQBF02', 'DSP1DQ02', 'Crysis', 'Crysis 3', 'Shooter');
-INSERT INTO Game VALUES('G1DQAE04', 'D1DQBF03', 'DSP1DQ03', 'Call of Duty', 'Call of Duty Ghosts', 'Shooter');
-INSERT INTO Game VALUES('G1DQAE05', 'D1DQBF04', 'DSP1DQ04', 'Sonic 3D', 'Sonic and the black knight', 'Adventure');
-INSERT INTO Game VALUES('G1DQAE06', 'D1DQBF05', 'DSP1DQ01', 'Mario Party', 'Mario Party 9', 'Family');
-INSERT INTO Game VALUES('G1DQAE07', 'D1DQBF04', 'DSP1DQ04', 'Sonic 2D', 'Sonic Boom: Shattered Crystal', '3D platformer');
-INSERT INTO Game VALUES('G1DQAE08', 'D1DQBF05', 'DSP1DQ01', 'Mario Party', 'Super Mario Party', 'Family');
-INSERT INTO Game VALUES('G1DQAE09', 'D1DQBF04', 'DSP1DQ04', 'Sonic 3D', 'Sonic Forces', '3D platformer');
-INSERT INTO Game VALUES('G1DQAE10', 'D1DQBF03', 'DSP1DQ03', 'Call of Duty', 'Call of Duty 2', 'Shooter');
-INSERT INTO Game VALUES('G1DQAE11', 'D1DQBF04', 'DSP1DQ04', 'Sonic Race', 'Sonic Riders', 'Race');
-INSERT INTO Game VALUES('G1DQAE12', 'D1DQBF02', 'DSP1DQ02', 'Crysis', 'Crysis 2', 'Shooter');
-INSERT INTO Game VALUES('G1DQAE13', 'D1DQBF04', 'DSP1DQ04', 'Sonic 3D', 'Sonic Black Knight 2', 'Adventure');
-INSERT INTO Game VALUES('G1DQAE14', 'D1DQBF06', 'DSP1DQ03', 'Call of Duty', 'Call of Duty Black Ops 3','Shooter');
-INSERT INTO Game VALUES('G1DQAE15', 'D1DQBF07', 'DSP1DQ01', 'Zelda 3D', 'The Legend of Zelda: Breath of the wild', 'Adventure');
-INSERT INTO Game VALUES('G1DQAE16', 'D1DQBF07', 'DSP1DQ01', 'Zelda 3D', 'The Legend of Zelda: Skyward Sword', 'Adventure');
-INSERT INTO Game VALUES('G1DQAE17', 'D1DQBF07', 'DSP1DQ01', 'Zelda 3D', 'The Legend of Zelda: Ocarina of Time 3D', 'Adventure');
-INSERT INTO Game VALUES('G1DQAE18', 'D1DQBF01', 'DSP1DQ01', 'Super Mario Bros', 'New Super Mario Bros Wii', '2D platformer');
-INSERT INTO Game VALUES('G1DQAE19', 'D1DQBF08', 'DSP1DQ01', 'Mario 3D', 'Mario Galaxy', '3D platformer');
-INSERT INTO Game VALUES('G1DQAE20', 'D1DQBF08', 'DSP1DQ01', 'Mario 3D', 'Mario Galaxy 2', '3D platformer');
+INSERT INTO Game VALUES('G1DQAE01', 'SEP1DQ01', 'Zelda II: The Adventure of Link');
+INSERT INTO Game VALUES('G1DQAE02', 'SEP1DQ04', 'Zelda II: The Adventure of Link');
+INSERT INTO Game VALUES('G1DQAE03', 'SEP1DQ02', 'The Legend of Zelda: A Link to the Past');
+INSERT INTO Game VALUES('G1DQAE04', 'SEP1DQ04', 'The Legend of Zelda: A Link to the Past');
+INSERT INTO Game VALUES('G1DQAE05', 'SEP1DQ03', 'The Legend of Zelda: Ocarina of Time');
+INSERT INTO Game VALUES('G1DQAE06', 'SEP1DQ07', 'The Legend of Zelda: Ocarina of Time');
+INSERT INTO Game VALUES('G1DQAE07', 'SEP1DQ04', 'The Legend of Zelda: The Minish Cap');
+INSERT INTO Game VALUES('G1DQAE08', 'SEP1DQ05', 'The Legend of Zelda: Skyward Sword');
+INSERT INTO Game VALUES('G1DQAE09', 'SEP1DQ06', 'The Legend of Zelda: Breath of the Wild');
+INSERT INTO Game VALUES('G1DQAE10', 'SEP1DQ08', 'The Legend of Zelda: Breath of the Wild');
+INSERT INTO Game VALUES('G1DQAE11', 'SEP1DQ02', 'Super Mario Kart');
+INSERT INTO Game VALUES('G1DQAE12', 'SEP1DQ03', 'Mario Kart 64');
+INSERT INTO Game VALUES('G1DQAE13', 'SEP1DQ07', 'Mario Kart 7');
+INSERT INTO Game VALUES('G1DQAE14', 'SEP1DQ06', 'Mario Kart 8');
+INSERT INTO Game VALUES('G1DQAE15', 'SEP1DQ08', 'Mario Kart 8');
+INSERT INTO Game VALUES('G1DQAE16', 'SEP1DQ01', 'Super Mario Bros. 3');
+INSERT INTO Game VALUES('G1DQAE17', 'SEP1DQ04', 'Super Mario Bros. 3');
+INSERT INTO Game VALUES('G1DQAE18', 'SEP1DQ02', 'Super Mario All-Stars');
+INSERT INTO Game VALUES('G1DQAE19', 'SEP1DQ05', 'Super Mario All-Stars');
+INSERT INTO Game VALUES('G1DQAE20', 'SEP1DQ05', 'New Super Mario Bros. Wii');
+INSERT INTO Game VALUES('G1DQAE21', 'SEP1DQ06', 'New Super Mario Bros. U');
+INSERT INTO Game VALUES('G1DQAE22', 'SEP1DQ08', 'New Super Mario Bros. U');
+INSERT INTO Game VALUES('G1DQAE23', 'SEP1DQ03', 'Super Mario 64');
+INSERT INTO Game VALUES('G1DQAE24', 'SEP1DQ05', 'Super Mario Galaxy');
+INSERT INTO Game VALUES('G1DQAE25', 'SEP1DQ05', 'Super Mario Galaxy 2');
+INSERT INTO Game VALUES('G1DQAE26', 'SEP1DQ05', 'Mario Party 9');
+INSERT INTO Game VALUES('G1DQAE27', 'SEP1DQ08', 'Super Mario Party');
+INSERT INTO Game VALUES('G1DQAE28', 'SEP1DQ10', 'Crysis 2');
+INSERT INTO Game VALUES('G1DQAE29', 'SEP1DQ12', 'Crysis 2');
+INSERT INTO Game VALUES('G1DQAE30', 'SEP1DQ10', 'Crysis 3');
+INSERT INTO Game VALUES('G1DQAE31', 'SEP1DQ12', 'Crysis 3');
+INSERT INTO Game VALUES('G1DQAE32', 'SEP1DQ12', 'Call of Duty 2');
+INSERT INTO Game VALUES('G1DQAE33', 'SEP1DQ07', 'Call of Duty: Ghosts');
+INSERT INTO Game VALUES('G1DQAE34', 'SEP1DQ10', 'Call of Duty: Ghosts');
+INSERT INTO Game VALUES('G1DQAE35', 'SEP1DQ11', 'Call of Duty: Ghosts');
+INSERT INTO Game VALUES('G1DQAE36', 'SEP1DQ12', 'Call of Duty: Ghosts');
+INSERT INTO Game VALUES('G1DQAE37', 'SEP1DQ13', 'Call of Duty: Ghosts');
+INSERT INTO Game VALUES('G1DQAE38', 'SEP1DQ10', 'Call of Duty: Black Ops 3');
+INSERT INTO Game VALUES('G1DQAE39', 'SEP1DQ11', 'Call of Duty: Black Ops 3');
+INSERT INTO Game VALUES('G1DQAE40', 'SEP1DQ12', 'Call of Duty: Black Ops 3');
+INSERT INTO Game VALUES('G1DQAE41', 'SEP1DQ13', 'Call of Duty: Black Ops 3');
+INSERT INTO Game VALUES('G1DQAE42', 'SEP1DQ07', 'Sonic Boom: Shattered Crystal');
+INSERT INTO Game VALUES('G1DQAE43', 'SEP1DQ05', 'Sonic and the Black Knight');
+INSERT INTO Game VALUES('G1DQAE44', 'SEP1DQ08', 'Sonic Forces');
+INSERT INTO Game VALUES('G1DQAE45', 'SEP1DQ11', 'Sonic Forces');
+INSERT INTO Game VALUES('G1DQAE46', 'SEP1DQ13', 'Sonic Forces');
+INSERT INTO Game VALUES('G1DQAE47', 'SEP1DQ09', 'Sonic Riders');
+
+CREATE TABLE IF NOT EXISTS RegionVersion (
+	`GameID` varchar(8) NOT NULL,
+	`RegionName` varchar(8) NOT NULL,
+	'Release' datetime NOT NULL,
+	CONSTRAINT PK_RegionRelease PRIMARY KEY(GameID, RegionName),
+	CONSTRAINT FK_GameID FOREIGN KEY (GameID) REFERENCES Game(GameID)
+);
+
+/* inserting data into table RegionVersion*/
+INSERT INTO RegionVersion VALUES('G1DQAE01', 'JP', '14-01-1987');
+INSERT INTO RegionVersion VALUES('G1DQAE01', 'NA', '01-12-1988');
+INSERT INTO RegionVersion VALUES('G1DQAE01', 'PAL', '26-09-1988');
+INSERT INTO RegionVersion VALUES('G1DQAE02', 'JP', '10-08-2004');
+INSERT INTO RegionVersion VALUES('G1DQAE02', 'NA', '25-10-2004');
+INSERT INTO RegionVersion VALUES('G1DQAE02', 'PAL', '07-01-2005');
+INSERT INTO RegionVersion VALUES('G1DQAE03', 'JP', '21-11-1991');
+INSERT INTO RegionVersion VALUES('G1DQAE03', 'NA', '13-04-1992');
+INSERT INTO RegionVersion VALUES('G1DQAE03', 'PAL', '24-09-1992');
+INSERT INTO RegionVersion VALUES('G1DQAE04', 'JP', '14-03-2003');
+INSERT INTO RegionVersion VALUES('G1DQAE04', 'NA', '02-12-2002');
+INSERT INTO RegionVersion VALUES('G1DQAE04', 'PAL', '28-02-2003');
+INSERT INTO RegionVersion VALUES('G1DQAE05', 'AU', '18-12-1998');
+INSERT INTO RegionVersion VALUES('G1DQAE05', 'EU', '11-12-1998');
+INSERT INTO RegionVersion VALUES('G1DQAE05', 'JP', '21-11-1998');
+INSERT INTO RegionVersion VALUES('G1DQAE05', 'NA', '23-11-1998');
+INSERT INTO RegionVersion VALUES('G1DQAE06', 'AU', '30-06-2011');
+INSERT INTO RegionVersion VALUES('G1DQAE06', 'EU', '17-06-2011');
+INSERT INTO RegionVersion VALUES('G1DQAE06', 'JP', '16-06-2011');
+INSERT INTO RegionVersion VALUES('G1DQAE06', 'NA', '19-06-2011');
+INSERT INTO RegionVersion VALUES('G1DQAE07', 'AU', '07-04-2005');
+INSERT INTO RegionVersion VALUES('G1DQAE07', 'EU', '12-11-2004');
+INSERT INTO RegionVersion VALUES('G1DQAE07', 'JP', '04-11-2004');
+INSERT INTO RegionVersion VALUES('G1DQAE07', 'NA', '10-01-2005');
+INSERT INTO RegionVersion VALUES('G1DQAE08', 'AU', '24-11-2011');
+INSERT INTO RegionVersion VALUES('G1DQAE08', 'EU', '18-11-2011');
+INSERT INTO RegionVersion VALUES('G1DQAE08', 'JP', '23-11-2011');
+INSERT INTO RegionVersion VALUES('G1DQAE08', 'NA', '20-11-2011');
+INSERT INTO RegionVersion VALUES('G1DQAE09', 'WW', '03-03-2017');
+INSERT INTO RegionVersion VALUES('G1DQAE10', 'WW', '03-03-2017');
+INSERT INTO RegionVersion VALUES('G1DQAE11', 'EU', '21-01-1993');
+INSERT INTO RegionVersion VALUES('G1DQAE11', 'JP', '27-08-1992');
+INSERT INTO RegionVersion VALUES('G1DQAE11', 'NA', '01-09-1992');
+INSERT INTO RegionVersion VALUES('G1DQAE11', 'UK', '04-12-1992');
+INSERT INTO RegionVersion VALUES('G1DQAE12', 'EU', '24-06-1997');
+INSERT INTO RegionVersion VALUES('G1DQAE12', 'JP', '14-12-1996');
+INSERT INTO RegionVersion VALUES('G1DQAE12', 'NA', '10-02-1997');
+INSERT INTO RegionVersion VALUES('G1DQAE12', 'UK', '13-06-1997');
+INSERT INTO RegionVersion VALUES('G1DQAE13', 'AU', '03-12-2011');
+INSERT INTO RegionVersion VALUES('G1DQAE13', 'EU', '02-12-2011');
+INSERT INTO RegionVersion VALUES('G1DQAE13', 'HK', '28-09-2012');
+INSERT INTO RegionVersion VALUES('G1DQAE13', 'JP', '01-12-2011');
+INSERT INTO RegionVersion VALUES('G1DQAE13', 'NA', '04-12-2011');
+INSERT INTO RegionVersion VALUES('G1DQAE14', 'JP', '29-05-2014');
+INSERT INTO RegionVersion VALUES('G1DQAE14', 'WW', '30-05-2014');
+INSERT INTO RegionVersion VALUES('G1DQAE15', 'WW', '28-04-2017');
+INSERT INTO RegionVersion VALUES('G1DQAE16', 'JP', '23-10-1988');
+INSERT INTO RegionVersion VALUES('G1DQAE16', 'NA', '12-03-1990');
+INSERT INTO RegionVersion VALUES('G1DQAE16', 'PAL', '29-08-1991');
+INSERT INTO RegionVersion VALUES('G1DQAE17', 'AU', '23-02-2004');
+INSERT INTO RegionVersion VALUES('G1DQAE17', 'EU', '17-10-2003');
+INSERT INTO RegionVersion VALUES('G1DQAE17', 'JP', '11-07-2003');
+INSERT INTO RegionVersion VALUES('G1DQAE17', 'NA', '21-10-2003');
+INSERT INTO RegionVersion VALUES('G1DQAE18', 'JP', '14-07-1993');
+INSERT INTO RegionVersion VALUES('G1DQAE18', 'NA', '11-08-1993');
+INSERT INTO RegionVersion VALUES('G1DQAE18', 'PAL', '16-12-1993');
+INSERT INTO RegionVersion VALUES('G1DQAE19', 'EU', '03-12-2010');
+INSERT INTO RegionVersion VALUES('G1DQAE19', 'JP', '21-10-2010');
+INSERT INTO RegionVersion VALUES('G1DQAE19', 'NA', '12-12-2010');
+INSERT INTO RegionVersion VALUES('G1DQAE20', 'AU', '12-11-2009');
+INSERT INTO RegionVersion VALUES('G1DQAE20', 'EU', '20-11-2009');
+INSERT INTO RegionVersion VALUES('G1DQAE20', 'JP', '03-12-2009');
+INSERT INTO RegionVersion VALUES('G1DQAE20', 'NA', '15-11-2009');
+INSERT INTO RegionVersion VALUES('G1DQAE21', 'JP', '08-12-2012');
+INSERT INTO RegionVersion VALUES('G1DQAE21', 'NA', '18-11-2012');
+INSERT INTO RegionVersion VALUES('G1DQAE21', 'PAL', '30-11-2012');
+INSERT INTO RegionVersion VALUES('G1DQAE22', 'CHN', '10-12-2019');
+INSERT INTO RegionVersion VALUES('G1DQAE22', 'WW', '11-01-2019');
+INSERT INTO RegionVersion VALUES('G1DQAE23', 'EU', '01-03-1997');
+INSERT INTO RegionVersion VALUES('G1DQAE23', 'JP', '23-06-1996');
+INSERT INTO RegionVersion VALUES('G1DQAE23', 'NA', '29-09-1996');
+INSERT INTO RegionVersion VALUES('G1DQAE24', 'AU', '29-11-2007');
+INSERT INTO RegionVersion VALUES('G1DQAE24', 'EU', '16-11-2007');
+INSERT INTO RegionVersion VALUES('G1DQAE24', 'JP', '01-11-2007');
+INSERT INTO RegionVersion VALUES('G1DQAE24', 'NA', '12-11-2007');
+INSERT INTO RegionVersion VALUES('G1DQAE25', 'AU', '01-07-2010');
+INSERT INTO RegionVersion VALUES('G1DQAE25', 'EU', '11-06-2010');
+INSERT INTO RegionVersion VALUES('G1DQAE25', 'JP', '27-05-2010');
+INSERT INTO RegionVersion VALUES('G1DQAE25', 'NA', '23-05-2010');
+INSERT INTO RegionVersion VALUES('G1DQAE26', 'AU', '08-03-2012');
+INSERT INTO RegionVersion VALUES('G1DQAE26', 'EU', '02-03-1012');
+INSERT INTO RegionVersion VALUES('G1DQAE26', 'HK', '29-06-2012');
+INSERT INTO RegionVersion VALUES('G1DQAE26', 'JP', '26-04-2012');
+INSERT INTO RegionVersion VALUES('G1DQAE26', 'KOR', '11-04-2013');
+INSERT INTO RegionVersion VALUES('G1DQAE26', 'NA', '11-03-2012');
+INSERT INTO RegionVersion VALUES('G1DQAE27', 'WW', '05-10-2018');
+INSERT INTO RegionVersion VALUES('G1DQAE28', 'AU', '24-03-2011');
+INSERT INTO RegionVersion VALUES('G1DQAE28', 'EU', '25-03-2011');
+INSERT INTO RegionVersion VALUES('G1DQAE28', 'NA', '22-03-2011');
+INSERT INTO RegionVersion VALUES('G1DQAE29', 'AU', '24-03-2011');
+INSERT INTO RegionVersion VALUES('G1DQAE29', 'EU', '25-03-2011');
+INSERT INTO RegionVersion VALUES('G1DQAE29', 'NA', '22-03-2011');
+INSERT INTO RegionVersion VALUES('G1DQAE30', 'AU', '21-02-2013');
+INSERT INTO RegionVersion VALUES('G1DQAE30', 'EU', '22-02-2013');
+INSERT INTO RegionVersion VALUES('G1DQAE30', 'NA', '19-02-2013');
+INSERT INTO RegionVersion VALUES('G1DQAE31', 'AU', '21-02-2013');
+INSERT INTO RegionVersion VALUES('G1DQAE31', 'EU', '22-02-2013');
+INSERT INTO RegionVersion VALUES('G1DQAE31', 'NA', '19-02-2013');
+INSERT INTO RegionVersion VALUES('G1DQAE32', 'EU', '02-12-2005');
+INSERT INTO RegionVersion VALUES('G1DQAE32', 'NA', '22-11-2005');
+INSERT INTO RegionVersion VALUES('G1DQAE33', 'WW', '05-11-2013');
+INSERT INTO RegionVersion VALUES('G1DQAE34', 'WW', '05-11-2013');
+INSERT INTO RegionVersion VALUES('G1DQAE35', 'EU', '29-11-2013');
+INSERT INTO RegionVersion VALUES('G1DQAE35', 'EU', '15-11-2013');
+INSERT INTO RegionVersion VALUES('G1DQAE36', 'WW', '05-11-2013');
+INSERT INTO RegionVersion VALUES('G1DQAE37', 'WW', '22-11-2013');
+INSERT INTO RegionVersion VALUES('G1DQAE38', 'WW', '06-11-2015');
+INSERT INTO RegionVersion VALUES('G1DQAE39', 'WW', '06-11-2015');
+INSERT INTO RegionVersion VALUES('G1DQAE40', 'WW', '06-11-2015');
+INSERT INTO RegionVersion VALUES('G1DQAE41', 'WW', '06-11-2015');
+INSERT INTO RegionVersion VALUES('G1DQAE42', 'AU', '29-11-2014');
+INSERT INTO RegionVersion VALUES('G1DQAE42', 'EU', '21-11-2014');
+INSERT INTO RegionVersion VALUES('G1DQAE42', 'JP', '18-12-2014');
+INSERT INTO RegionVersion VALUES('G1DQAE42', 'NA', '11-11-2014');
+INSERT INTO RegionVersion VALUES('G1DQAE43', 'AU', '12-03-2009');
+INSERT INTO RegionVersion VALUES('G1DQAE43', 'EU', '13-03-2009');
+INSERT INTO RegionVersion VALUES('G1DQAE43', 'JP', '12-03-2009');
+INSERT INTO RegionVersion VALUES('G1DQAE43', 'NA', '03-03-2009');
+INSERT INTO RegionVersion VALUES('G1DQAE44', 'JP', '09-11-2017');
+INSERT INTO RegionVersion VALUES('G1DQAE44', 'WW', '07-11-2017');
+INSERT INTO RegionVersion VALUES('G1DQAE45', 'JP', '09-11-2017');
+INSERT INTO RegionVersion VALUES('G1DQAE45', 'WW', '07-11-2017');
+INSERT INTO RegionVersion VALUES('G1DQAE46', 'JP', '09-11-2017');
+INSERT INTO RegionVersion VALUES('G1DQAE46', 'WW', '07-11-2017');
+INSERT INTO RegionVersion VALUES('G1DQAE47', 'AU', '23-03-2006');
+INSERT INTO RegionVersion VALUES('G1DQAE47', 'EU', '17-03-2006');
+INSERT INTO RegionVersion VALUES('G1DQAE47', 'JP', '23-02-2006');
+INSERT INTO RegionVersion VALUES('G1DQAE47', 'NA', '21-02-2006');
 
 CREATE TABLE IF NOT EXISTS System (
 	`SystemID` varchar(8) NOT NULL, 
@@ -46,17 +208,19 @@ CREATE TABLE IF NOT EXISTS System (
 );
 
 /* inserting data into table System*/
-INSERT INTO System VALUES('SEP1DQ01', 'Wii U', 'CSP1DQ01', '18-11-2012', 32);
-INSERT INTO System VALUES('SEP1DQ02', 'Wii', 'CSP1DQ01', '28-08-2012', 32);
-INSERT INTO System VALUES('SEP1DQ03', 'Nintendo 2DS', 'CSP1DQ01', '12-11-2013', 64);
-INSERT INTO System VALUES('SEP1DQ04', 'Nintendo 3DS', 'CSP1DQ01', '26-02-2011', 64);
-INSERT INTO System VALUES('SEP1DQ05', 'Nintendo Switch', 'CSP1DQ01', '03-03-2017', 64);
-INSERT INTO System VALUES('SEP1DQ06', 'Playstation 2', 'CSP1DQ02', '04-03-2000', 64);
-INSERT INTO System VALUES('SEP1DQ07', 'Playstation 3', 'CSP1DQ02', '11-11-2006', 64);
-INSERT INTO System VALUES('SEP1DQ08', 'Playstation 4', 'CSP1DQ02', '15-11-2013', 64);
-INSERT INTO System VALUES('SEP1DQ09', 'Xbox 360', 'CSP1DQ03', '22-11-2005', 64);
-INSERT INTO System VALUES('SEP1DQ10', 'Xbox One', 'CSP1DQ03', '22-11-2013', 64);
-INSERT INTO System VALUES('SEP1DQ11', 'Xbox One Series X', 'CSP1DQ03', '10-11-2020', 64);
+INSERT INTO System VALUES('SEP1DQ01', 'NES', 'CSP1DQ01', '15-07-1983', 8);
+INSERT INTO System VALUES('SEP1DQ02', 'SNES', 'CSP1DQ01', '21-11-1990', 16);
+INSERT INTO System VALUES('SEP1DQ03', 'N64', 'CSP1DQ01', '23-06-1996', 64);
+INSERT INTO System VALUES('SEP1DQ04', 'GameBoy Advance', 'CSP1DQ02', '21-03-2001', 32);
+INSERT INTO System VALUES('SEP1DQ05', 'Wii', 'CSP1DQ01', '19-11-2006', 64);
+INSERT INTO System VALUES('SEP1DQ06', 'Nintendo 3DS', 'CSP1DQ02', '26-03-2011', 64);
+INSERT INTO System VALUES('SEP1DQ07', 'Wii U', 'CSP1DQ01', '18-11-2012', 64);
+INSERT INTO System VALUES('SEP1DQ08', 'Nintendo Switch', 'CSP1DQ01', '03-03-2017', 64);
+INSERT INTO System VALUES('SEP1DQ09', 'Playstation 2', 'CSP1DQ03', '04-03-2000', 64);
+INSERT INTO System VALUES('SEP1DQ10', 'Playstation 3', 'CSP1DQ03', '11-11-2006', 64);
+INSERT INTO System VALUES('SEP1DQ11', 'Playstation 4', 'CSP1DQ03', '15-11-2013', 64);
+INSERT INTO System VALUES('SEP1DQ12', 'Xbox 360', 'CSP1DQ04', '22-11-2005', 64);
+INSERT INTO System VALUES('SEP1DQ13', 'Xbox One', 'CSP1DQ04', '22-11-2013', 64);
 
 CREATE TABLE IF NOT EXISTS DevelopmentStudio (
 	`DSID` varchar(8) NOT NULL, 
@@ -66,6 +230,7 @@ CREATE TABLE IF NOT EXISTS DevelopmentStudio (
 	CONSTRAINT PK_DSID PRIMARY KEY (DSID)
 );
 
+/* inserting data into table DevelopmentStudio*/
 INSERT INTO DevelopmentStudio VALUES('D1DQBF01', 'Nintendo EAD', 'Kyoto, Japan', '0772994657');
 INSERT INTO DevelopmentStudio VALUES('D1DQBF02', 'Crytek', 'Coburg, Germany', '9561265678');
 INSERT INTO DevelopmentStudio VALUES('D1DQBF03', 'Infinity Ward', 'Woodland Hills, USA', '6615485586');
@@ -97,173 +262,62 @@ CREATE TABLE IF NOT EXISTS SubFranchise (
 	CONSTRAINT FK_Franchise FOREIGN KEY (FranchiseName) REFERENCES GameFranchise(FranchiseName) 	
 );
 
+INSERT INTO SubFranchise VALUES('Zelda 2D', 'The Legend of Zelda', '21-02-1986');
+INSERT INTO SubFranchise VALUES('Zelda 3D', 'The Legend of Zelda', '21-11-1998');
 INSERT INTO SubFranchise VALUES('Mario Kart', 'Mario', '27-08-1992');
+INSERT INTO SubFranchise VALUES('Mario 2D', 'Mario', '13-09-1985');
+INSERT INTO SubFranchise VALUES('Mario 3D', 'Mario', '23-06-1996');
+INSERT INTO SubFranchise VALUES('Mario Party', 'Mario', '18-12-1998');
 INSERT INTO SubFranchise VALUES('Crysis', 'Crysis', '13-11-2007');
 INSERT INTO SubFranchise VALUES('Call of Duty', 'Call of Duty', '29-10-2003');
 INSERT INTO SubFranchise VALUES('Sonic 2D', 'Sonic', '23-06-1991');
 INSERT INTO SubFranchise VALUES('Sonic 3D', 'Sonic', '07-11-1996');
-INSERT INTO SubFranchise VALUES('Mario Party', 'Mario', '18-12-1998');
 INSERT INTO SubFranchise VALUES('Sonic Race', 'Sonic', '18-03-1994');
-INSERT INTO SubFranchise VALUES('Zelda 3D', 'The Legend of Zelda', '21-11-1998');
-INSERT INTO SubFranchise VALUES('Super Mario Bros', 'Mario', '13-09-1985');
-INSERT INTO SubFranchise VALUES('Mario 3D', 'Mario', '23-06-1996');
-
-CREATE TABLE IF NOT EXISTS RegionVersion (
-	`RegionID` varchar(8) NOT NULL,
-	`RegionName` char(10) NOT NULL,
-	CONSTRAINT PK_RegionID PRIMARY KEY(RegionID)
-);
-
-/* inserting data into table RegionVersion*/
-INSERT INTO RegionVersion VALUES('RTP1DQ01', 'NTSC-U');
-INSERT INTO RegionVersion VALUES('RTP1DQ02', 'NTSC-C');
-INSERT INTO RegionVersion VALUES('RTP1DQ03', 'NTSC-J');
-INSERT INTO RegionVersion VALUES('RTP1DQ04', 'PAL-A');
-INSERT INTO RegionVersion VALUES('RTP1DQ05', 'PAL-B');
-INSERT INTO RegionVersion VALUES('RTP1DQ06', 'Asia');
 
 /* Intersection Tables*/
 --//////////////////////
 
-/* connects table Game with table GameSystem */
-CREATE TABLE IF NOT EXISTS GameSystem (
-	`GameID` varchar(8) NOT NULL,
-	`SystemID` varchar(8) NOT NULL,
-	CONSTRAINT PK_GameSystem PRIMARY KEY(GameID, SystemID),
-	CONSTRAINT FK_SystemID FOREIGN KEY (SystemID) REFERENCES System(SystemID),
-	CONSTRAINT FK_GameID FOREIGN KEY (GameID) REFERENCES Game(GameID)
+CREATE TABLE IF NOT EXISTS GameData (
+	`DSID` varchar(8) NOT NULL,
+	`PublisherID` varchar(8) NOT NULL,
+	`SubfranchiseName` varchar(30) NOT NULL,
+	`Title` char(25) NOT NULL,
+	`Genre` char(15) NOT NULL,
+	CONSTRAINT PK_Title PRIMARY KEY (Title),
+	CONSTRAINT FK_DSID FOREIGN KEY (DSID) REFERENCES DevelopmentStudio(DSID),
+	CONSTRAINT FK_PublisherID FOREIGN KEY (PublisherID) REFERENCES Publisher(PublisherID),
+	CONSTRAINT FK_SubFranchise FOREIGN KEY (SubfranchiseName) REFERENCES SubFranchise(SubfranchiseName)
 );
 
-/* inserting data into table GameSystem*/
-INSERT INTO GameSystem VALUES('G1DQAE01', 'SEP1DQ01');      
-INSERT INTO GameSystem VALUES('G1DQAE02', 'SEP1DQ03');
-INSERT INTO GameSystem VALUES('G1DQAE02', 'SEP1DQ04');
-INSERT INTO GameSystem VALUES('G1DQAE03', 'SEP1DQ09');
-INSERT INTO GameSystem VALUES('G1DQAE03', 'SEP1DQ10');
-INSERT INTO GameSystem VALUES('G1DQAE03', 'SEP1DQ11');
-INSERT INTO GameSystem VALUES('G1DQAE03', 'SEP1DQ06');
-INSERT INTO GameSystem VALUES('G1DQAE03', 'SEP1DQ07');
-INSERT INTO GameSystem VALUES('G1DQAE03', 'SEP1DQ08');
-INSERT INTO GameSystem VALUES('G1DQAE04', 'SEP1DQ07');
-INSERT INTO GameSystem VALUES('G1DQAE04', 'SEP1DQ08');
-INSERT INTO GameSystem VALUES('G1DQAE04', 'SEP1DQ01');
-INSERT INTO GameSystem VALUES('G1DQAE04', 'SEP1DQ09');
-INSERT INTO GameSystem VALUES('G1DQAE04', 'SEP1DQ10');
-INSERT INTO GameSystem VALUES('G1DQAE04', 'SEP1DQ11');
-INSERT INTO GameSystem VALUES('G1DQAE05', 'SEP1DQ02');
-INSERT INTO GameSystem VALUES('G1DQAE05', 'SEP1DQ07');
-INSERT INTO GameSystem VALUES('G1DQAE05', 'SEP1DQ09');
-INSERT INTO GameSystem VALUES('G1DQAE06', 'SEP1DQ02');
-INSERT INTO GameSystem VALUES('G1DQAE07', 'SEP1DQ01');
-INSERT INTO GameSystem VALUES('G1DQAE07', 'SEP1DQ03');
-INSERT INTO GameSystem VALUES('G1DQAE07', 'SEP1DQ04');
-INSERT INTO GameSystem VALUES('G1DQAE08', 'SEP1DQ05');
-INSERT INTO GameSystem VALUES('G1DQAE09', 'SEP1DQ05');
-INSERT INTO GameSystem VALUES('G1DQAE09', 'SEP1DQ08');
-INSERT INTO GameSystem VALUES('G1DQAE10', 'SEP1DQ06');
-INSERT INTO GameSystem VALUES('G1DQAE10', 'SEP1DQ09');
-INSERT INTO GameSystem VALUES('G1DQAE11', 'SEP1DQ06');
-INSERT INTO GameSystem VALUES('G1DQAE12', 'SEP1DQ07');
-INSERT INTO GameSystem VALUES('G1DQAE12', 'SEP1DQ09');
-INSERT INTO GameSystem VALUES('G1DQAE13', 'SEP1DQ01');
-INSERT INTO GameSystem VALUES('G1DQAE13', 'SEP1DQ05');
-INSERT INTO GameSystem VALUES('G1DQAE14', 'SEP1DQ07');
-INSERT INTO GameSystem VALUES('G1DQAE14', 'SEP1DQ08');
-INSERT INTO GameSystem VALUES('G1DQAE14', 'SEP1DQ01');
-INSERT INTO GameSystem VALUES('G1DQAE14', 'SEP1DQ09');
-INSERT INTO GameSystem VALUES('G1DQAE14', 'SEP1DQ10');
-INSERT INTO GameSystem VALUES('G1DQAE15', 'SEP1DQ05');
-INSERT INTO GameSystem VALUES('G1DQAE16', 'SEP1DQ02');
-INSERT INTO GameSystem VALUES('G1DQAE16', 'SEP1DQ05');
-INSERT INTO GameSystem VALUES('G1DQAE17', 'SEP1DQ03');
-INSERT INTO GameSystem VALUES('G1DQAE17', 'SEP1DQ04');
-INSERT INTO GameSystem VALUES('G1DQAE18', 'SEP1DQ02');
-INSERT INTO GameSystem VALUES('G1DQAE19', 'SEP1DQ02');
-INSERT INTO GameSystem VALUES('G1DQAE20', 'SEP1DQ02');
-
-
-/* connects table Game with table RegionVersion */
-CREATE TABLE IF NOT EXISTS GameRegionVersion (
-	`GameID` varchar(8) NOT NULL,
-	`RegionID` varchar(8) NOT NULL,
-	CONSTRAINT PK_GameSystem PRIMARY KEY(GameID, RegionID),
-	CONSTRAINT PK_RegionID FOREIGN KEY (RegionID) REFERENCES RegionVersion(RegionID),
-	CONSTRAINT FK_GameID FOREIGN KEY (GameID) REFERENCES Game(GameID)
-);
-
-/* inserting data into table GameRegionVersion*/
-INSERT INTO GameRegionVersion VALUES('G1DQAE01', 'RTP1DQ01');
-INSERT INTO GameRegionVersion VALUES('G1DQAE01', 'RTP1DQ02');     
-INSERT INTO GameRegionVersion VALUES('G1DQAE01', 'RTP1DQ03');
-INSERT INTO GameRegionVersion VALUES('G1DQAE01', 'RTP1DQ04');
-INSERT INTO GameRegionVersion VALUES('G1DQAE01', 'RTP1DQ05'); 
-INSERT INTO GameRegionVersion VALUES('G1DQAE02', 'RTP1DQ01');
-INSERT INTO GameRegionVersion VALUES('G1DQAE02', 'RTP1DQ02');
-INSERT INTO GameRegionVersion VALUES('G1DQAE02', 'RTP1DQ03');
-INSERT INTO GameRegionVersion VALUES('G1DQAE02', 'RTP1DQ04');
-INSERT INTO GameRegionVersion VALUES('G1DQAE02', 'RTP1DQ05');
-INSERT INTO GameRegionVersion VALUES('G1DQAE02', 'RTP1DQ06');
-INSERT INTO GameRegionVersion VALUES('G1DQAE03', 'RTP1DQ01');
-INSERT INTO GameRegionVersion VALUES('G1DQAE03', 'RTP1DQ02');
-INSERT INTO GameRegionVersion VALUES('G1DQAE03', 'RTP1DQ04');
-INSERT INTO GameRegionVersion VALUES('G1DQAE04', 'RTP1DQ01');
-INSERT INTO GameRegionVersion VALUES('G1DQAE04', 'RTP1DQ02');
-INSERT INTO GameRegionVersion VALUES('G1DQAE04', 'RTP1DQ04');
-INSERT INTO GameRegionVersion VALUES('G1DQAE04', 'RTP1DQ06');
-INSERT INTO GameRegionVersion VALUES('G1DQAE05', 'RTP1DQ01');
-INSERT INTO GameRegionVersion VALUES('G1DQAE05', 'RTP1DQ03');
-INSERT INTO GameRegionVersion VALUES('G1DQAE05', 'RTP1DQ04');
-INSERT INTO GameRegionVersion VALUES('G1DQAE06', 'RTP1DQ01');
-INSERT INTO GameRegionVersion VALUES('G1DQAE06', 'RTP1DQ02');
-INSERT INTO GameRegionVersion VALUES('G1DQAE06', 'RTP1DQ03');
-INSERT INTO GameRegionVersion VALUES('G1DQAE06', 'RTP1DQ04');
-INSERT INTO GameRegionVersion VALUES('G1DQAE06', 'RTP1DQ05');
-INSERT INTO GameRegionVersion VALUES('G1DQAE06', 'RTP1DQ06');
-INSERT INTO GameRegionVersion VALUES('G1DQAE07', 'RTP1DQ01');
-INSERT INTO GameRegionVersion VALUES('G1DQAE07', 'RTP1DQ03');
-INSERT INTO GameRegionVersion VALUES('G1DQAE07', 'RTP1DQ04');
-INSERT INTO GameRegionVersion VALUES('G1DQAE08', 'RTP1DQ01');
-INSERT INTO GameRegionVersion VALUES('G1DQAE08', 'RTP1DQ02');
-INSERT INTO GameRegionVersion VALUES('G1DQAE08', 'RTP1DQ03');
-INSERT INTO GameRegionVersion VALUES('G1DQAE08', 'RTP1DQ04');
-INSERT INTO GameRegionVersion VALUES('G1DQAE09', 'RTP1DQ01');
-INSERT INTO GameRegionVersion VALUES('G1DQAE09', 'RTP1DQ03');
-INSERT INTO GameRegionVersion VALUES('G1DQAE09', 'RTP1DQ04');
-INSERT INTO GameRegionVersion VALUES('G1DQAE09', 'RTP1DQ05');
-INSERT INTO GameRegionVersion VALUES('G1DQAE10', 'RTP1DQ01');
-INSERT INTO GameRegionVersion VALUES('G1DQAE10', 'RTP1DQ04');
-INSERT INTO GameRegionVersion VALUES('G1DQAE11', 'RTP1DQ01');
-INSERT INTO GameRegionVersion VALUES('G1DQAE11', 'RTP1DQ02');
-INSERT INTO GameRegionVersion VALUES('G1DQAE11', 'RTP1DQ03');
-INSERT INTO GameRegionVersion VALUES('G1DQAE11', 'RTP1DQ04');
-INSERT INTO GameRegionVersion VALUES('G1DQAE12', 'RTP1DQ01');
-INSERT INTO GameRegionVersion VALUES('G1DQAE12', 'RTP1DQ04');
-INSERT INTO GameRegionVersion VALUES('G1DQAE13', 'RTP1DQ01');
-INSERT INTO GameRegionVersion VALUES('G1DQAE13', 'RTP1DQ03');
-INSERT INTO GameRegionVersion VALUES('G1DQAE13', 'RTP1DQ04');
-INSERT INTO GameRegionVersion VALUES('G1DQAE14', 'RTP1DQ01');
-INSERT INTO GameRegionVersion VALUES('G1DQAE14', 'RTP1DQ04');
-INSERT INTO GameRegionVersion VALUES('G1DQAE14', 'RTP1DQ05');
-INSERT INTO GameRegionVersion VALUES('G1DQAE14', 'RTP1DQ03');
-INSERT INTO GameRegionVersion VALUES('G1DQAE15', 'RTP1DQ01');
-INSERT INTO GameRegionVersion VALUES('G1DQAE15', 'RTP1DQ03');
-INSERT INTO GameRegionVersion VALUES('G1DQAE15', 'RTP1DQ04');
-INSERT INTO GameRegionVersion VALUES('G1DQAE15', 'RTP1DQ06');
-INSERT INTO GameRegionVersion VALUES('G1DQAE16', 'RTP1DQ01');
-INSERT INTO GameRegionVersion VALUES('G1DQAE16', 'RTP1DQ03');
-INSERT INTO GameRegionVersion VALUES('G1DQAE16', 'RTP1DQ04');
-INSERT INTO GameRegionVersion VALUES('G1DQAE17', 'RTP1DQ01');
-INSERT INTO GameRegionVersion VALUES('G1DQAE17', 'RTP1DQ03');
-INSERT INTO GameRegionVersion VALUES('G1DQAE17', 'RTP1DQ04');
-INSERT INTO GameRegionVersion VALUES('G1DQAE18', 'RTP1DQ01');
-INSERT INTO GameRegionVersion VALUES('G1DQAE18', 'RTP1DQ02');
-INSERT INTO GameRegionVersion VALUES('G1DQAE18', 'RTP1DQ03');
-INSERT INTO GameRegionVersion VALUES('G1DQAE19', 'RTP1DQ01');
-INSERT INTO GameRegionVersion VALUES('G1DQAE19', 'RTP1DQ03');
-INSERT INTO GameRegionVersion VALUES('G1DQAE19', 'RTP1DQ04');
-INSERT INTO GameRegionVersion VALUES('G1DQAE20', 'RTP1DQ01');
-INSERT INTO GameRegionVersion VALUES('G1DQAE20', 'RTP1DQ05');
-INSERT INTO GameRegionVersion VALUES('G1DQAE20', 'RTP1DQ06');
+/* inserting data into table GameData*/
+INSERT INTO GameData VALUES('D1DQBF01', 'DSP1DQ01', 'Zelda 2D', 'Zelda II: The Adventure of Link', 'Adventure');
+INSERT INTO GameData VALUES('D1DQBF01', 'DSP1DQ01', 'Zelda 2D', 'The Legend of Zelda: A Link to the Past', 'Adventure');
+INSERT INTO GameData VALUES('D1DQBF01', 'DSP1DQ01', 'Zelda 3D', 'The Legend of Zelda: Ocarina of Time', 'Adventure');
+INSERT INTO GameData VALUES('D1DQBF07', 'DSP1DQ01', 'Zelda 2D', 'The Legend of Zelda: The Minish Cap', 'Adventure');
+INSERT INTO GameData VALUES('D1DQBF01', 'DSP1DQ01', 'Zelda 3D', 'The Legend of Zelda: Skyward Sword', 'Adventure');
+INSERT INTO GameData VALUES('D1DQBF07', 'DSP1DQ01', 'Zelda 3D', 'The Legend of Zelda: Breath of the wild', 'Adventure');
+INSERT INTO GameData VALUES('D1DQBF01', 'DSP1DQ01', 'Mario Kart', 'Super Mario Kart', 'Race');
+INSERT INTO GameData VALUES('D1DQBF01', 'DSP1DQ01', 'Mario Kart', 'Mario Kart 64', 'Race');
+INSERT INTO GameData VALUES('D1DQBF01', 'DSP1DQ01', 'Mario Kart', 'Mario Kart 7', 'Race');
+INSERT INTO GameData VALUES('D1DQBF01', 'DSP1DQ01', 'Mario Kart', 'Mario Kart 8', 'Race');
+INSERT INTO GameData VALUES('D1DQBF01', 'DSP1DQ01', 'Mario 2D', 'Super Mario Bros. 3', 'Platformer');
+INSERT INTO GameData VALUES('D1DQBF01', 'DSP1DQ01', 'Mario 2D', 'Super Mario All-Stars', 'Platformer');
+INSERT INTO GameData VALUES('D1DQBF01', 'DSP1DQ01', 'Mario 2D', 'New Super Mario Bros. Wii', 'Platformer');
+INSERT INTO GameData VALUES('D1DQBF01', 'DSP1DQ01', 'Mario 2D', 'New Super Mario Bros. U', 'Platformer');
+INSERT INTO GameData VALUES('D1DQBF01', 'DSP1DQ01', 'Mario 3D', 'Super Mario 64', 'Platformer');
+INSERT INTO GameData VALUES('D1DQBF08', 'DSP1DQ01', 'Mario 3D', 'Super Mario Galaxy', 'Platformer');
+INSERT INTO GameData VALUES('D1DQBF08', 'DSP1DQ01', 'Mario 3D', 'Super Mario Galaxy 2', 'Platformer');
+INSERT INTO GameData VALUES('D1DQBF05', 'DSP1DQ01', 'Mario Party', 'Mario Party 9', 'Family');
+INSERT INTO GameData VALUES('D1DQBF05', 'DSP1DQ01', 'Mario Party', 'Super Mario Party', 'Family');
+INSERT INTO GameData VALUES('D1DQBF02', 'DSP1DQ02', 'Crysis', 'Crysis 2', 'Shooter');
+INSERT INTO GameData VALUES('D1DQBF02', 'DSP1DQ02', 'Crysis', 'Crysis 3', 'Shooter');
+INSERT INTO GameData VALUES('D1DQBF03', 'DSP1DQ03', 'Call of Duty', 'Call of Duty 2', 'Shooter');
+INSERT INTO GameData VALUES('D1DQBF03', 'DSP1DQ03', 'Call of Duty', 'Call of Duty: Ghosts', 'Shooter');
+INSERT INTO GameData VALUES('D1DQBF06', 'DSP1DQ03', 'Call of Duty', 'Call of Duty: Black Ops 3','Shooter');
+INSERT INTO GameData VALUES('D1DQBF04', 'DSP1DQ04', 'Sonic 2D', 'Sonic Boom: Shattered Crystal', 'Platformer');
+INSERT INTO GameData VALUES('D1DQBF04', 'DSP1DQ04', 'Sonic 3D', 'Sonic and the black knight', 'Platformer');
+INSERT INTO GameData VALUES('D1DQBF04', 'DSP1DQ04', 'Sonic 3D', 'Sonic Forces', 'Platformer');
+INSERT INTO GameData VALUES('D1DQBF04', 'DSP1DQ04', 'Sonic Race', 'Sonic Riders', 'Race');
 
 /* Lower level entities*/
 --//////////////////////
@@ -276,10 +330,10 @@ CREATE TABLE IF NOT EXISTS ConsoleLine (
 );
 
 /* inserting data into table ConsoleLine*/
-INSERT INTO ConsoleLine VALUES('CSP1DQ01', 'Wii', '19-11-2006', 32)
-INSERT INTO ConsoleLine VALUES('CSP1DQ01', 'Nintendo', '21-11-1982', 8);
-INSERT INTO ConsoleLine VALUES('CSP1DQ02', 'Playstation','3-12-1996', 32);
-INSERT INTO ConsoleLine VALUES('CSP1DQ03', 'Xbox', '15-11-2001', 64);
+INSERT INTO ConsoleLine VALUES('CSP1DQ01', 'Nintendo Home', '21-11-1982', 8);
+INSERT INTO ConsoleLine VALUES('CSP1DQ02', 'Nintendo HandHeld', '21-04-1989', 8);
+INSERT INTO ConsoleLine VALUES('CSP1DQ03', 'Playstation','3-12-1996', 32);
+INSERT INTO ConsoleLine VALUES('CSP1DQ04', 'Xbox', '15-11-2001', 64);
 
 /* supertype of isa-hierarchy */
 /* uses a composite primary key, since foreign keys of the child tables are also composite keys */
@@ -297,6 +351,7 @@ CREATE TABLE IF NOT EXISTS Worker (
 	CONSTRAINT FK_DSID FOREIGN KEY (DSID) REFERENCES DevelopmentStudio(DSID)
 );
 
+/* inserting data into table Worker*/
 INSERT INTO Worker VALUES('U0001NAK', 'DSP1DQ01', 'president', 'Hiroshi', 'Ikeda', '193-1023 Nishishinjuku Shinjuku Mitsuibiru(43-kai)', '7095025502', '03-06-1952');
 INSERT INTO Worker VALUES('U0002NAK', 'DSP1DQ01', 'director', 'Kosuke', 'Yabuki', '463-1082 Kisshoin Higashisunanocho', '8010421563', '05-11-1968');
 INSERT INTO Worker VALUES('U0003NAK', 'DSP1DQ01', 'designer', 'Masaaki', 'Ishikawa', '322-1091 Miyamacho Nagao', '8061204776', '14-12-1970');
@@ -364,6 +419,7 @@ CREATE TABLE IF NOT EXISTS GameDesigner (
 	CONSTRAINT FK_Job FOREIGN KEY (UserID, Function) REFERENCES Worker(UserID, Function)
 );
 
+/* inserting data into table GameDesigner*/
 INSERT INTO GameDesigner VALUES('U0003NAK', 'designer', '15');
 INSERT INTO GameDesigner VALUES('U0004GCR', 'designer', '9');
 INSERT INTO GameDesigner VALUES('U0003INF', 'designer', '21');
@@ -383,15 +439,16 @@ CREATE TABLE IF NOT EXISTS President (
 	CONSTRAINT FK_Job FOREIGN KEY (UserID, Function) REFERENCES Worker(UserID, Function)
 );
 
-INSERT INTO President VALUES('U0001NAK', 'president', '28');
-INSERT INTO President VALUES('U0001GCR', 'president', '19');
-INSERT INTO President VALUES('U0002GCR', 'president', '19');
-INSERT INTO President VALUES('U0001INF', 'president', '22');
-INSERT INTO President VALUES('U0001SSU', 'president', '18');
-INSERT INTO President VALUES('U0001NDC', 'president', '21');
-INSERT INTO President VALUES('U0001TRA', 'president', '15');
-INSERT INTO President VALUES('U0001NPK', 'president', '23');
-INSERT INTO President VALUES('U0001NAT', 'president', '37');
+/* inserting data into table President*/
+INSERT INTO President VALUES('U0001NAK', 'president', '1983-1990');
+INSERT INTO President VALUES('U0001GCR', 'president', '2014-now');
+INSERT INTO President VALUES('U0002GCR', 'president', '2014-now');
+INSERT INTO President VALUES('U0001INF', 'president', '2002-2009');
+INSERT INTO President VALUES('U0001SSU', 'president', '2008-2009');
+INSERT INTO President VALUES('U0001NDC', 'president', '2019-now');
+INSERT INTO President VALUES('U0001TRA', 'president', '2008-now');
+INSERT INTO President VALUES('U0001NPK', 'president', '2015-2018');
+INSERT INTO President VALUES('U0001NAT', 'president', '2002-2015');
 
 CREATE TABLE IF NOT EXISTS GameFranchise (
 	`FranchiseName` varchar(30) NOT NULL,
@@ -399,10 +456,11 @@ CREATE TABLE IF NOT EXISTS GameFranchise (
 	CONSTRAINT PK_GameFranchise PRIMARY KEY(FranchiseName)
 );
 
-INSERT INTO GameFranchise VALUES('Mario', '26-07-1983');
-INSERT INTO GameFranchise VALUES('Sonic', '23-06-1991');
-INSERT INTO GameFranchise VALUES('Call of Duty', '29-10-2003');
-INSERT INTO GameFranchise VALUES('Crysis', '13-11-2007');
+/* inserting data into table GameFranchise*/
 INSERT INTO GameFranchise VALUES('The Legend of Zelda', '21-02-1986');
+INSERT INTO GameFranchise VALUES('Mario', '26-07-1983');
+INSERT INTO GameFranchise VALUES('Crysis', '13-11-2007');
+INSERT INTO GameFranchise VALUES('Call of Duty', '29-10-2003');
+INSERT INTO GameFranchise VALUES('Sonic', '23-06-1991');
 
 
