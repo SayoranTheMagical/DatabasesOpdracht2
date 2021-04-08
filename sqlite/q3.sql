@@ -9,16 +9,15 @@ and the result with table gamefranchise ()(the table containing the information 
 Lastly a clause needs to be added that specifies that only mario games should be selected (using Where).
 The condition that needs to be added is that the Franchise Name (of GameFranchise) is equal to "Mario" .
  */
-SELECT Game.GameID,
-       Game.SubfranchiseName, 
-       Game.Title, 
-       Game.Genre,
-       GameFranchise.FranchiseName
-FROM Game
-INNER JOIN SubFranchise ON Game.SubfranchiseName = SubFranchise.SubfranchiseName 
-INNER JOIN GameFranchise ON GameFranchise.FranchiseName = SubFranchise.FranchiseName
-WHERE GameFranchise.FranchiseName = "Mario";
 
-
-
-
+SELECT GameData.Title
+FROM GameData
+INNER JOIN Game ON GameData.Title = Game.Title 
+INNER JOIN System ON System.SystemID = Game.SystemID
+WHERE System.Name = "Nintendo 3DS"
+EXCEPT
+SELECT GameData.Title
+FROM GameData
+INNER JOIN Game ON GameData.Title = Game.Title 
+INNER JOIN System ON System.SystemID = Game.SystemID
+WHERE System.Name != "Nintendo 3DS";

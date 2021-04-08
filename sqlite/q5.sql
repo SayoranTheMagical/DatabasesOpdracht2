@@ -14,7 +14,7 @@
          
 SELECT
 	Name,
-	MAX(Sums/amountWorker)
+	MAX(Sums/amountWorker) HighestAverageSalary
 FROM
     (SELECT
         DevelopmentStudio.Name,
