@@ -204,7 +204,7 @@ CREATE TABLE IF NOT EXISTS System (
 	`ReleaseDate` datetime NOT NULL,
 	`Bitsize` tinyint NOT NULL,
 	CONSTRAINT PK_SystemID PRIMARY KEY (SystemID),
-	CONSTRAINT FK_ConsoleLineID FOREIGN KEY (ConsoleLineID) REFERENCES ConsoleLine(ConsoleLineID)
+	CONSTRAINT FK_ConsoleLineID FOREIGN KEY (ConsoleLineID) REFERENCES ConsoleLine(ConsoleLineID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 /* inserting data into table System*/
@@ -259,7 +259,7 @@ CREATE TABLE IF NOT EXISTS SubFranchise (
 	`FranchiseName` varchar(30) NOT NULL,
 	`Release` datetime NOT NULL,
 	CONSTRAINT PK_Subfranchise PRIMARY KEY(SubfranchiseName),
-	CONSTRAINT FK_Franchise FOREIGN KEY (FranchiseName) REFERENCES GameFranchise(FranchiseName) 	
+	CONSTRAINT FK_Franchise FOREIGN KEY (FranchiseName) REFERENCES GameFranchise(FranchiseName) ON UPDATE CASCADE 	
 );
 
 INSERT INTO SubFranchise VALUES('Zelda 2D', 'The Legend of Zelda', '21-02-1986');
@@ -326,7 +326,7 @@ CREATE TABLE IF NOT EXISTS ConsoleLine (
 	`Name` varchar(20) NOT NULL, /* can’t be NULL */
 	`ReleaseDate` datetime NOT NULL,
 	`Bitsize` tinyint NOT NULL,
-	CONSTRAINT PK_ConsoleLineID PRIMARY KEY(ConsoleLineID)
+	CONSTRAINT PK_ConsoleLineID PRIMARY KEY(ConsoleLineID) 
 );
 
 /* inserting data into table ConsoleLine*/
@@ -337,6 +337,7 @@ INSERT INTO ConsoleLine VALUES('CSP1DQ04', 'Xbox', '15-11-2001', 64);
 
 /* supertype of isa-hierarchy */
 /* uses a composite primary key, since foreign keys of the child tables are also composite keys */
+/* the salary is the average year salary*/
 /* TEXT CHECK is used similarly to ENUM datatype */
 CREATE TABLE IF NOT EXISTS Worker (
 	`UserID` varchar(8) NOT NULL,
@@ -347,42 +348,42 @@ CREATE TABLE IF NOT EXISTS Worker (
 	`Street` char(15) NOT NULL,
 	`Phone` char(10) NOT NULL,
 	`DateOfBirth` datetime NOT NULL,
+	`Salary` INT NOT NULL,
     CONSTRAINT PK_UserID PRIMARY KEY (UserID, Function),
-	CONSTRAINT FK_DSID FOREIGN KEY (DSID) REFERENCES DevelopmentStudio(DSID)
+	CONSTRAINT FK_DSID FOREIGN KEY (DSID) REFERENCES DevelopmentStudio(DSID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-/* inserting data into table Worker*/
-INSERT INTO Worker VALUES('U0001NAK', 'DSP1DQ01', 'president', 'Hiroshi', 'Ikeda', '193-1023 Nishishinjuku Shinjuku Mitsuibiru(43-kai)', '7095025502', '03-06-1952');
-INSERT INTO Worker VALUES('U0002NAK', 'DSP1DQ01', 'director', 'Kosuke', 'Yabuki', '463-1082 Kisshoin Higashisunanocho', '8010421563', '05-11-1968');
-INSERT INTO Worker VALUES('U0003NAK', 'DSP1DQ01', 'designer', 'Masaaki', 'Ishikawa', '322-1091 Miyamacho Nagao', '8061204776', '14-12-1970');
-INSERT INTO Worker VALUES('U0001GCR', 'DSP1DQ02', 'president', 'Avni', 'Yerli', 'Lietzenburger Strasse 90', '1600255232', '09-10-1975');
-INSERT INTO Worker VALUES('U0002GCR', 'DSP1DQ02', 'president', 'Faruk', 'Yerli', 'Brandenburgische Straße 37', '5571229157', '17-08-1981');
-INSERT INTO Worker VALUES('U0003GCR', 'DSP1DQ02', 'director', 'Cevat', 'Yerli', 'Fasanenstrasse 63', '7626297987', '06-03-1978');
-INSERT INTO Worker VALUES('U0004GCR', 'DSP1DQ02', 'designer', 'Jack', 'Mamais', 'Borstelmannsweg 10', '1780802937', '23-07-1986');
-INSERT INTO Worker VALUES('U0001INF', 'DSP1DQ03', 'president', 'Grant', 'Collier', '2673  Twin Willow Lane', '3365548554', '07-07-1981');
-INSERT INTO Worker VALUES('U0002INF', 'DSP1DQ03', 'director', 'Jason', 'West', '1288  Fannie Street', '5858339214', '08-09-1977');
-INSERT INTO Worker VALUES('U0003INF', 'DSP1DQ03', 'designer', 'Zied', 'Rieke', '2934  Jewell Road', '2132851200', '24-02-1973');
-INSERT INTO Worker VALUES('U0004INF', 'DSP1DQ03', 'designer', 'Steve', 'Fukuda', '3818  Anthony Avenue', '2132133919', '27-04-1979');
-INSERT INTO Worker VALUES('U0001SSU', 'DSP1DQ04', 'president', 'Jeremy', 'Gordon', '2931  Modoc Alley', '2142714938', '17-05-1969');
-INSERT INTO Worker VALUES('U0002SSU', 'DSP1DQ04', 'director', 'Tetsu', 'Katano', '1253  Scott Street', '7043132141', '15-03-1962');
-INSERT INTO Worker VALUES('U0003SSU', 'DSP1DQ04', 'designer', 'Morio', 'Kishimoto', '1446  Michigan Avenue', '8055852725', '18-12-1965');
-INSERT INTO Worker VALUES('U0001NDC', 'DSP1DQ05', 'president', 'Shuichiro', 'Nishiya', '470-1087 Honcho', '8082325597', '07-09-1957');
-INSERT INTO Worker VALUES('U0002NDC', 'DSP1DQ05', 'director', 'Atsushi', 'Ikeda', '289-1264 Ikanikeisaiganaibaai', '8088955705', '23-01-1976');
-INSERT INTO Worker VALUES('U0003NDC', 'DSP1DQ05', 'director', 'Keisuke', 'Terasaki', '107-1049 Ohashinaicho', '7037915417', '14-08-1968');
-INSERT INTO Worker VALUES('U0004NDC', 'DSP1DQ05', 'director', 'Kenji', 'Kikuchi', '231-1004 Tokiwa', '8083571408', '19-11-1972');
-INSERT INTO Worker VALUES('U0001TRA', 'DSP1DQ06', 'president', 'Peter', 'Akemann', '326  Coventry Court', '2195757984', '28-01-1981');
-INSERT INTO Worker VALUES('U0002TRA', 'DSP1DQ06', 'director', 'Jason', 'Blundell', '2688  Marion Drive', '2232574216', '15-06-1979');
-INSERT INTO Worker VALUES('U0003TRA', 'DSP1DQ06', 'director', 'Dan', 'Bunting', '4999  New Creek Road', '2066428437', '21-12-1985');
-INSERT INTO Worker VALUES('U0004TRA', 'DSP1DQ06', 'director', 'Corky', 'Lehmkuhl', '3071  Aviation Way', '3215486836', '18-09-1973');
-INSERT INTO Worker VALUES('U0005TRA', 'DSP1DQ06', 'designer', 'Gavin', 'Locke', '57  Fort Street', '2139140113', '15-11-1978');
-INSERT INTO Worker VALUES('U0001NPK', 'DSP1DQ07', 'president', 'Tatsumi', 'Kimishima', '101-1296 Shuchi', '9082297513', '21-04-1950');
-INSERT INTO Worker VALUES('U0002NPK', 'DSP1DQ07', 'director', 'Koichi', 'Hayashida', '389-1188 Misasagi Shichonocho', '8086253587', '08-03-1957');
-INSERT INTO Worker VALUES('U0001NAT', 'DSP1DQ08', 'president', 'Satoru', 'Iwata', '376-1075 Ochikawa', '9064651542', '23-01-1959');
-INSERT INTO Worker VALUES('U0002NAT', 'DSP1DQ08', 'director', 'Shigeyuki', 'Asuke', '2-6 Minami Aoyama 6-chome', '8019988767', '23-01-1973');
-INSERT INTO Worker VALUES('U0003NAT', 'DSP1DQ08', 'director', 'Yoshiaki', 'Koizumi', '333-1012 Aizumicho', '9061439732', '29-04-1968');
-INSERT INTO Worker VALUES('U0004NAT', 'DSP1DQ08', 'director', 'Hidemaro', 'Fujibayashi', '224-1204 Itabashi', '9034234645', '01-10-1972');
-INSERT INTO Worker VALUES('U0005NAT', 'DSP1DQ08', 'designer', 'Takashi', 'Tezuka', '258-1104 Kotta', '9094948644', '17-11-1960');
-INSERT INTO Worker VALUES('U0006NAT', 'DSP1DQ08', 'designer', 'Hiroyuki', 'Kimura', '191-1178 Konan Shinagawaintashiteia-to(27-kai)', '8041625246', '01-06-1965');
+INSERT INTO Worker VALUES('U0001NAK', 'D1DQBF01', 'president', 'Hiroshi', 'Ikeda', '193-1023 Nishishinjuku Shinjuku Mitsuibiru(43-kai)', '7095025502', '03-06-1952', 2000000);
+INSERT INTO Worker VALUES('U0002NAK', 'D1DQBF01', 'director', 'Kosuke', 'Yabuki', '463-1082 Kisshoin Higashisunanocho', '8010421563', '05-11-1968', 1000000);
+INSERT INTO Worker VALUES('U0003NAK', 'D1DQBF01', 'designer', 'Masaaki', 'Ishikawa', '322-1091 Miyamacho Nagao', '8061204776', '14-12-1970',100000);
+INSERT INTO Worker VALUES('U0001GCR', 'D1DQBF02', 'president', 'Avni', 'Yerli', 'Lietzenburger Strasse 90', '1600255232', '09-10-1975', 6000000);
+INSERT INTO Worker VALUES('U0002GCR', 'D1DQBF02', 'president', 'Faruk', 'Yerli', 'Brandenburgische Straße 37', '5571229157', '17-08-1981', 500000);
+INSERT INTO Worker VALUES('U0003GCR', 'D1DQBF02', 'director', 'Cevat', 'Yerli', 'Fasanenstrasse 63', '7626297987', '06-03-1978', 480000);
+INSERT INTO Worker VALUES('U0004GCR', 'D1DQBF02', 'designer', 'Jack', 'Mamais', 'Borstelmannsweg 10', '1780802937', '23-07-1986', 2100000);
+INSERT INTO Worker VALUES('U0001INF', 'D1DQBF03', 'president', 'Grant', 'Collier', '2673  Twin Willow Lane', '3365548554', '07-07-1981', 200000);
+INSERT INTO Worker VALUES('U0002INF', 'D1DQBF03', 'director', 'Jason', 'West', '1288  Fannie Street', '5858339214', '08-09-1977', 180000);
+INSERT INTO Worker VALUES('U0003INF', 'D1DQBF03', 'designer', 'Zied', 'Rieke', '2934  Jewell Road', '2132851200', '24-02-1973', 80000);
+INSERT INTO Worker VALUES('U0004INF', 'D1DQBF03', 'designer', 'Steve', 'Fukuda', '3818  Anthony Avenue', '2132133919', '27-04-1979', 95000);
+INSERT INTO Worker VALUES('U0001SSU', 'D1DQBF04', 'president', 'Jeremy', 'Gordon', '2931  Modoc Alley', '2142714938', '17-05-1969', 1000000);
+INSERT INTO Worker VALUES('U0002SSU', 'D1DQBF04', 'director', 'Tetsu', 'Katano', '1253  Scott Street', '7043132141', '15-03-1962', 70000);
+INSERT INTO Worker VALUES('U0003SSU', 'D1DQBF04', 'designer', 'Morio', 'Kishimoto', '1446  Michigan Avenue', '8055852725', '18-12-1965', 3000000);
+INSERT INTO Worker VALUES('U0001NDC', 'D1DQBF05', 'president', 'Shuichiro', 'Nishiya', '470-1087 Honcho', '8082325597', '07-09-1957', 450000);
+INSERT INTO Worker VALUES('U0002NDC', 'D1DQBF05', 'director', 'Atsushi', 'Ikeda', '289-1264 Ikanikeisaiganaibaai', '8088955705', '23-01-1976', 200000);
+INSERT INTO Worker VALUES('U0003NDC', 'D1DQBF05', 'director', 'Keisuke', 'Terasaki', '107-1049 Ohashinaicho', '7037915417', '14-08-1968', 140000);
+INSERT INTO Worker VALUES('U0004NDC', 'D1DQBF05', 'director', 'Kenji', 'Kikuchi', '231-1004 Tokiwa', '8083571408', '19-11-1972', 6000000);
+INSERT INTO Worker VALUES('U0001TRA', 'D1DQBF06', 'president', 'Peter', 'Akemann', '326  Coventry Court', '2195757984', '28-01-1981', 3400000);
+INSERT INTO Worker VALUES('U0002TRA', 'D1DQBF06', 'director', 'Jason', 'Blundell', '2688  Marion Drive', '2232574216', '15-06-1979', 700000);
+INSERT INTO Worker VALUES('U0003TRA', 'D1DQBF06', 'director', 'Dan', 'Bunting', '4999  New Creek Road', '2066428437', '21-12-1985', 660000);
+INSERT INTO Worker VALUES('U0004TRA', 'D1DQBF06', 'director', 'Corky', 'Lehmkuhl', '3071  Aviation Way', '3215486836', '18-09-1973', 235000);
+INSERT INTO Worker VALUES('U0005TRA', 'D1DQBF06', 'designer', 'Gavin', 'Locke', '57  Fort Street', '2139140113', '15-11-1978', 580000);
+INSERT INTO Worker VALUES('U0001NPK', 'D1DQBF07', 'president', 'Tatsumi', 'Kimishima', '101-1296 Shuchi', '9082297513', '21-04-1950', 2440000);
+INSERT INTO Worker VALUES('U0002NPK', 'D1DQBF07', 'director', 'Koichi', 'Hayashida', '389-1188 Misasagi Shichonocho', '8086253587', '08-03-1957', 1300000);
+INSERT INTO Worker VALUES('U0001NAT', 'D1DQBF08', 'president', 'Satoru', 'Iwata', '376-1075 Ochikawa', '9064651542', '23-01-1959', 2100000);
+INSERT INTO Worker VALUES('U0002NAT', 'D1DQBF08', 'director', 'Shigeyuki', 'Asuke', '2-6 Minami Aoyama 6-chome', '8019988767', '23-01-1973', 633000);
+INSERT INTO Worker VALUES('U0003NAT', 'D1DQBF08', 'director', 'Yoshiaki', 'Koizumi', '333-1012 Aizumicho', '9061439732', '29-04-1968', 300000 );
+INSERT INTO Worker VALUES('U0004NAT', 'D1DQBF08', 'director', 'Hidemaro', 'Fujibayashi', '224-1204 Itabashi', '9034234645', '01-10-1972', 550000);
+INSERT INTO Worker VALUES('U0005NAT', 'D1DQBF08', 'designer', 'Takashi', 'Tezuka', '258-1104 Kotta', '9094948644', '17-11-1960', 2600000);
+INSERT INTO Worker VALUES('U0006NAT', 'D1DQBF08', 'designer', 'Hiroyuki', 'Kimura', '191-1178 Konan Shinagawaintashiteia-to(27-kai)', '8041625246', '01-06-1965', 156000);
 
 /* subtype of of isa-hierarchy */
 /* experience is the amount of years worked at a studio*/
@@ -391,23 +392,23 @@ CREATE TABLE IF NOT EXISTS DevelopmentDirector (
     `Function` TEXT CHECK(Function IN ('director')) NOT NULL,
 	`Experience` tinyint NOT NULL, 
 	CONSTRAINT PK_UserID PRIMARY KEY (UserID),
-	CONSTRAINT FK_Job FOREIGN KEY (UserID, Function) REFERENCES Worker(UserID, Function)
+	CONSTRAINT FK_Job FOREIGN KEY (UserID, Function) REFERENCES Worker(UserID, Function) ON DELETE CASCADE 
 );
 
-INSERT INTO DevelopmentDirector VALUES('U0002NAK', 'director', '24');
-INSERT INTO DevelopmentDirector VALUES('U0003GCR', 'director', '13');
-INSERT INTO DevelopmentDirector VALUES('U0002INF', 'director', '17');
-INSERT INTO DevelopmentDirector VALUES('U0002SSU', 'director', '5');
-INSERT INTO DevelopmentDirector VALUES('U0002NDC', 'director', '9');
-INSERT INTO DevelopmentDirector VALUES('U0003NDC', 'director', '12');
-INSERT INTO DevelopmentDirector VALUES('U0004NDC', 'director', '11');
-INSERT INTO DevelopmentDirector VALUES('U0002TRA', 'director', '6');
-INSERT INTO DevelopmentDirector VALUES('U0003TRA', 'director', '5');
-INSERT INTO DevelopmentDirector VALUES('U0004TRA', 'director', '18');
-INSERT INTO DevelopmentDirector VALUES('U0002NPK', 'director', '13');
-INSERT INTO DevelopmentDirector VALUES('U0002NAT', 'director', '22');
-INSERT INTO DevelopmentDirector VALUES('U0003NAT', 'director', '17');
-INSERT INTO DevelopmentDirector VALUES('U0004NAT', 'director', '11');
+INSERT INTO DevelopmentDirector VALUES('U0002NAK', 'director', 24);
+INSERT INTO DevelopmentDirector VALUES('U0003GCR', 'director', 13);
+INSERT INTO DevelopmentDirector VALUES('U0002INF', 'director', 17);
+INSERT INTO DevelopmentDirector VALUES('U0002SSU', 'director', 5);
+INSERT INTO DevelopmentDirector VALUES('U0002NDC', 'director', 9);
+INSERT INTO DevelopmentDirector VALUES('U0003NDC', 'director', 12);
+INSERT INTO DevelopmentDirector VALUES('U0004NDC', 'director', 11);
+INSERT INTO DevelopmentDirector VALUES('U0002TRA', 'director', 6);
+INSERT INTO DevelopmentDirector VALUES('U0003TRA', 'director', 5);
+INSERT INTO DevelopmentDirector VALUES('U0004TRA', 'director', 18);
+INSERT INTO DevelopmentDirector VALUES('U0002NPK', 'director', 13);
+INSERT INTO DevelopmentDirector VALUES('U0002NAT', 'director', 22);
+INSERT INTO DevelopmentDirector VALUES('U0003NAT', 'director', 17);
+INSERT INTO DevelopmentDirector VALUES('U0004NAT', 'director', 11);
 
 /* subtype of of isa-hierarchy */
 /* experience is the amount of years worked at a studio*/
@@ -416,18 +417,17 @@ CREATE TABLE IF NOT EXISTS GameDesigner (
     `Function` TEXT CHECK(Function IN ('designer')) NOT NULL,
 	`Experience` tinyint NOT NULL,
 	CONSTRAINT PK_UserID PRIMARY KEY (UserID),
-	CONSTRAINT FK_Job FOREIGN KEY (UserID, Function) REFERENCES Worker(UserID, Function)
+	CONSTRAINT FK_Job FOREIGN KEY (UserID, Function) REFERENCES Worker(UserID, Function) ON DELETE CASCADE 
 );
 
-/* inserting data into table GameDesigner*/
-INSERT INTO GameDesigner VALUES('U0003NAK', 'designer', '15');
-INSERT INTO GameDesigner VALUES('U0004GCR', 'designer', '9');
-INSERT INTO GameDesigner VALUES('U0003INF', 'designer', '21');
-INSERT INTO GameDesigner VALUES('U0004INF', 'designer', '17');
-INSERT INTO GameDesigner VALUES('U0003SSU', 'designer', '16');
-INSERT INTO GameDesigner VALUES('U0005TRA', 'designer', '8');
-INSERT INTO GameDesigner VALUES('U0005NAT', 'designer', '25');
-INSERT INTO GameDesigner VALUES('U0006NAT', 'designer', '23');
+INSERT INTO GameDesigner VALUES('U0003NAK', 'designer', 15);
+INSERT INTO GameDesigner VALUES('U0004GCR', 'designer', 9);
+INSERT INTO GameDesigner VALUES('U0003INF', 'designer', 21);
+INSERT INTO GameDesigner VALUES('U0004INF', 'designer', 17);
+INSERT INTO GameDesigner VALUES('U0003SSU', 'designer', 16);
+INSERT INTO GameDesigner VALUES('U0005TRA', 'designer', 8);
+INSERT INTO GameDesigner VALUES('U0005NAT', 'designer', 25);
+INSERT INTO GameDesigner VALUES('U0006NAT', 'designer', 23);
 
 
 /* subtype of of isa-hierarchy */
@@ -436,7 +436,7 @@ CREATE TABLE IF NOT EXISTS President (
     `Function` TEXT CHECK(Function IN ('president')) NOT NULL,
 	`TimeframeOfPresidency` varchar(10) NOT NULL,
 	CONSTRAINT PK_UserID PRIMARY KEY (UserID),
-	CONSTRAINT FK_Job FOREIGN KEY (UserID, Function) REFERENCES Worker(UserID, Function)
+	CONSTRAINT FK_Job FOREIGN KEY (UserID, Function) REFERENCES Worker(UserID, Function) ON DELETE CASCADE 
 );
 
 /* inserting data into table President*/
