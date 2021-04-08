@@ -7,12 +7,12 @@ making use of the column that matches (GameID) (using INNER JOIN; returns all th
 The result (left table, values we want to preserve) is then joined with the table System (right table) containing the system name ( using LEFT JOIN).
 The LEFT JOIN is also done  based on a matching columnn (SystemID), but unlike inner it always returns the left table by default even if there are no matches.
 Lastly a WHERE clause is used so that only playstation 4 games are going to be selected (ORDER BY is used for a cleaner view).*/
-Select  GameData.Title,
+Select  Game.Title,
         System.Name
-From GameData
-INNER JOIN Game ON GameData.Title = Game.Title 
-LEFT Join System ON System.SystemID = Game.SystemID
-WHERE System.Name = "Playstation 4"
-ORDER BY GameData.Title;
+From Game
+INNER JOIN Game ON Game.Title = GameSystem.Title 
+LEFT Join System ON System.SystemID = GameSystem.SystemID
+WHERE System.Name != "Playstation 4"
+ORDER BY Game.Title;
 
 
