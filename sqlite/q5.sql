@@ -14,11 +14,12 @@
          
 SELECT
 	Name,
-	MAX(Sums)
+	MAX(Sums/amountWorker)
 FROM
     (SELECT
         DevelopmentStudio.Name,
-        SUM(salary) Sums
+        SUM(salary) Sums,
+        COUNT(*) amountWorker
     FROM
         Worker
     INNER JOIN DevelopmentStudio ON DevelopmentStudio.DSID = Worker.DSID 
