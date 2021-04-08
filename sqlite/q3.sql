@@ -10,6 +10,7 @@ Lastly a clause needs to be added that specifies that only mario games should be
 The condition that needs to be added is that the Franchise Name (of GameFranchise) is equal to "Mario" .
  */
 
+--Query A
 SELECT GameData.Title
 FROM GameData
 INNER JOIN Game ON GameData.Title = Game.Title 
@@ -21,3 +22,26 @@ FROM GameData
 INNER JOIN Game ON GameData.Title = Game.Title 
 INNER JOIN System ON System.SystemID = Game.SystemID
 WHERE System.Name != "Nintendo 3DS";
+
+--Query B
+SELECT GameData.Title
+FROM GameData
+WHERE Title IN
+(
+    SELECT GameData.Title
+    FROM GameData
+    INNER JOIN Game ON GameData.Title = Game.Title 
+    INNER JOIN System ON System.SystemID = Game.SystemID
+    WHERE System.Name = "Nintendo 3DS"
+)
+EXCEPT 
+SELECT GameData.Title
+FROM GameData
+WHERE Title IN
+(
+    SELECT GameData.Title
+    FROM GameData
+    INNER JOIN Game ON GameData.Title = Game.Title 
+    INNER JOIN System ON System.SystemID = Game.SystemID
+    WHERE System.Name != "Nintendo 3DS"
+);
