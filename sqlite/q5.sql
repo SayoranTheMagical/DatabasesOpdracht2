@@ -12,19 +12,10 @@
  Afterwards only the main query needs to be formed (sub-query is formed by putting it into the FROM). 
  Simply it needs to select the columns of the sub-query (the sums and name) and lastly use MAX for determing the maximum.  */
          
-SELECT
-	Name,
-	MAX(Sums/amountWorker) HighestAverageSalary
-FROM
-    (SELECT
-        DevelopmentStudio.Name,
-        SUM(salary) Sums,
-        COUNT(*) amountWorker
-    FROM
-        Worker
+SELECT Name, MAX(Sums/amountWorker) HighestAverageSalary FROM(
+    SELECT DevelopmentStudio.Name, SUM(salary) Sums, COUNT(*) amountWorker FROM Worker
     INNER JOIN DevelopmentStudio ON DevelopmentStudio.DSID = Worker.DSID 
-    GROUP BY
-        DevelopmentStudio.DSID);    
+    GROUP BY DevelopmentStudio.DSID);    
 
 
 

@@ -11,37 +11,27 @@ The condition that needs to be added is that the Franchise Name (of GameFranchis
  */
 
 --Query A
-SELECT GameData.Title
-FROM GameData
+SELECT Title FROM GameData
 INNER JOIN Game ON GameData.Title = Game.Title 
 INNER JOIN System ON System.SystemID = Game.SystemID
 WHERE System.Name = "Nintendo 3DS"
 EXCEPT
-SELECT GameData.Title
-FROM GameData
+SELECT Title FROM GameData
 INNER JOIN Game ON GameData.Title = Game.Title 
 INNER JOIN System ON System.SystemID = Game.SystemID
 WHERE System.Name != "Nintendo 3DS";
 
 --Query B
-SELECT GameData.Title
-FROM GameData
-WHERE Title IN
-(
-    SELECT GameData.Title
-    FROM GameData
+SELECT Title FROM GameData
+WHERE Title IN(
+    SELECT Title FROM GameData
     INNER JOIN Game ON GameData.Title = Game.Title 
     INNER JOIN System ON System.SystemID = Game.SystemID
-    WHERE System.Name = "Nintendo 3DS"
-)
+    WHERE System.Name = "Nintendo 3DS")
 EXCEPT 
-SELECT GameData.Title
-FROM GameData
-WHERE Title IN
-(
-    SELECT GameData.Title
-    FROM GameData
+SELECT Title FROM GameData
+WHERE Title IN(
+    SELECT Title FROM GameData
     INNER JOIN Game ON GameData.Title = Game.Title 
     INNER JOIN System ON System.SystemID = Game.SystemID
-    WHERE System.Name != "Nintendo 3DS"
-);
+    WHERE System.Name != "Nintendo 3DS");
