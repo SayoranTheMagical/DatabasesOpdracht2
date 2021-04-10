@@ -7,16 +7,16 @@ except the ones where there is not a Family-game.
 We join the GameFranchise and Subfranchise table with the matching(FranchiseName) and we thereafter we
 join Subfranchise and GameDat with the corresponding Attribute(SubFranchiseName).d*/
 
-SELECT FranchiseName FROM GameFranchise
+SELECT GameFranchise.FranchiseName FROM GameFranchise
 WHERE FranchiseName IN(
-    SELECT FranchiseName FROM GameFranchise
+    SELECT GameFranchise.FranchiseName FROM GameFranchise
     INNER JOIN Subfranchise ON Subfranchise.FranchiseName = GameFranchise.FranchiseName 
     LEFT JOIN GameData ON GameData.SubFranchiseName = Subfranchise.SubFranchiseName
     WHERE Genre = "Platformer")
 EXCEPT
-SELECT FranchiseName FROM GameFranchise
+SELECT GameFranchise.FranchiseName FROM GameFranchise
 WHERE FranchiseName NOT IN(
-    SELECT FranchiseName FROM GameFranchise
+    SELECT GameFranchise.FranchiseName FROM GameFranchise
     INNER JOIN Subfranchise ON Subfranchise.FranchiseName = GameFranchise.FranchiseName 
     LEFT JOIN GameData ON GameData.SubFranchiseName = Subfranchise.SubFranchiseName
     WHERE Genre = "Family");
