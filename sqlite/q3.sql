@@ -9,27 +9,12 @@ Then lastly it must be prevented that games that are not on exclusively on the N
  */
 
 --Query A
-SELECT Title FROM GameData
+SELECT GameData.Title FROM GameData
 INNER JOIN Game ON GameData.Title = Game.Title 
 INNER JOIN System ON System.SystemID = Game.SystemID
 WHERE System.Name = "Nintendo 3DS"
 EXCEPT
-SELECT Title FROM GameData
+SELECT GameData.Title FROM GameData
 INNER JOIN Game ON GameData.Title = Game.Title 
 INNER JOIN System ON System.SystemID = Game.SystemID
 WHERE System.Name != "Nintendo 3DS";
-
---Query B
-SELECT Title FROM GameData
-WHERE Title IN(
-    SELECT Title FROM GameData
-    INNER JOIN Game ON GameData.Title = Game.Title 
-    INNER JOIN System ON System.SystemID = Game.SystemID
-    WHERE System.Name = "Nintendo 3DS")
-EXCEPT 
-SELECT Title FROM GameData
-WHERE Title IN(
-    SELECT Title FROM GameData
-    INNER JOIN Game ON GameData.Title = Game.Title 
-    INNER JOIN System ON System.SystemID = Game.SystemID
-    WHERE System.Name != "Nintendo 3DS");
