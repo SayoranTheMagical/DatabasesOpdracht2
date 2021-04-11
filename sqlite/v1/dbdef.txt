@@ -38,9 +38,9 @@ CREATE TABLE IF NOT EXISTS DevelopmentStudio (
 
 CREATE TABLE IF NOT EXISTS Publisher (
 	`PublisherID` varchar(8) NOT NULL, 
-	`Name` varchar(30),
-	`Location` char(30),
-	`Phone` char(10),
+	`Name` varchar(30) NOT NULL,
+	`Location` char(30) NOT NULL,
+	`Phone` char(10) NOT NULL,
 	CONSTRAINT PK_PublisherID PRIMARY KEY(PublisherID)
 );
 
@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS Worker (
 CREATE TABLE IF NOT EXISTS DevelopmentDirector (
 	`UserID` varchar(8) NOT NULL,
     `Function` TEXT CHECK(Function IN ('director')) NOT NULL,
-	`Experience` tinyint NOT NULL, 
+	`Experience` tinyint, 
 	CONSTRAINT PK_UserID PRIMARY KEY (UserID),
 	CONSTRAINT FK_Job FOREIGN KEY (UserID, Function) REFERENCES Worker(UserID, Function) ON DELETE CASCADE 
 );
@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS DevelopmentDirector (
 CREATE TABLE IF NOT EXISTS GameDesigner (
 	`UserID` varchar(8) NOT NULL,
     `Function` TEXT CHECK(Function IN ('designer')) NOT NULL,
-	`Experience` tinyint NOT NULL,
+	`Experience` tinyint,
 	CONSTRAINT PK_UserID PRIMARY KEY (UserID),
 	CONSTRAINT FK_Job FOREIGN KEY (UserID, Function) REFERENCES Worker(UserID, Function) ON DELETE CASCADE 
 );

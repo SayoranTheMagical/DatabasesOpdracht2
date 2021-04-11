@@ -1,15 +1,3 @@
-/* Higher level entities*/
---///////////////////////
-
-CREATE TABLE IF NOT EXISTS Game (
-	'GameID' varchar(8) NOT NULL,
-	'SystemID' varchar(8) NOT NULL,
-	'Title' char(25) NOT NULL,
-	CONSTRAINT PK_GameID PRIMARY KEY (GameID),
-	CONSTRAINT FK_Title FOREIGN KEY (Title) REFERENCES GameData(Title),
-	CONSTRAINT FK_SystemID FOREIGN KEY (SystemID) REFERENCES System(SystemID) 
-);
-
 /* inserting data into table Game*/
 INSERT INTO Game VALUES('G1DQAE01', 'SEP1DQ01', 'Zelda II: The Adventure of Link');
 INSERT INTO Game VALUES('G1DQAE02', 'SEP1DQ04', 'Zelda II: The Adventure of Link');
@@ -58,14 +46,6 @@ INSERT INTO Game VALUES('G1DQAE44', 'SEP1DQ08', 'Sonic Forces');
 INSERT INTO Game VALUES('G1DQAE45', 'SEP1DQ11', 'Sonic Forces');
 INSERT INTO Game VALUES('G1DQAE46', 'SEP1DQ13', 'Sonic Forces');
 INSERT INTO Game VALUES('G1DQAE47', 'SEP1DQ09', 'Sonic Riders');
-
-CREATE TABLE IF NOT EXISTS RegionVersion (
-	`GameID` varchar(8) NOT NULL,
-	`RegionName` varchar(8) NOT NULL,
-	'Release' datetime NOT NULL,
-	CONSTRAINT PK_RegionRelease PRIMARY KEY(GameID, RegionName),
-	CONSTRAINT FK_GameID FOREIGN KEY (GameID) REFERENCES Game(GameID)
-);
 
 /* inserting data into table RegionVersion*/
 INSERT INTO RegionVersion VALUES('G1DQAE01', 'JP', '14-01-1987');
@@ -197,16 +177,6 @@ INSERT INTO RegionVersion VALUES('G1DQAE47', 'EU', '17-03-2006');
 INSERT INTO RegionVersion VALUES('G1DQAE47', 'JP', '23-02-2006');
 INSERT INTO RegionVersion VALUES('G1DQAE47', 'NA', '21-02-2006');
 
-CREATE TABLE IF NOT EXISTS System (
-	`SystemID` varchar(8) NOT NULL, 
-	`Name` varchar(20) NOT NULL, 
-	`ConsoleLineID` varchar(8) NOT NULL,
-	`ReleaseDate` datetime NOT NULL,
-	`Bitsize` tinyint NOT NULL,
-	CONSTRAINT PK_SystemID PRIMARY KEY (SystemID),
-	CONSTRAINT FK_ConsoleLineID FOREIGN KEY (ConsoleLineID) REFERENCES ConsoleLine(ConsoleLineID) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
 /* inserting data into table System*/
 INSERT INTO System VALUES('SEP1DQ01', 'NES', 'CSP1DQ01', '15-07-1983', 8);
 INSERT INTO System VALUES('SEP1DQ02', 'SNES', 'CSP1DQ01', '21-11-1990', 16);
@@ -222,14 +192,6 @@ INSERT INTO System VALUES('SEP1DQ11', 'Playstation 4', 'CSP1DQ03', '15-11-2013',
 INSERT INTO System VALUES('SEP1DQ12', 'Xbox 360', 'CSP1DQ04', '22-11-2005', 64);
 INSERT INTO System VALUES('SEP1DQ13', 'Xbox One', 'CSP1DQ04', '22-11-2013', 64);
 
-CREATE TABLE IF NOT EXISTS DevelopmentStudio (
-	`DSID` varchar(8) NOT NULL, 
-	`Name` varchar(30) NOT NULL,
-	`Location` char(30) NOT NULL,
-	`Phone` char(10) NOT NULL,
-	CONSTRAINT PK_DSID PRIMARY KEY (DSID)
-);
-
 /* inserting data into table DevelopmentStudio*/
 INSERT INTO DevelopmentStudio VALUES('D1DQBF01', 'Nintendo EAD', 'Kyoto, Japan', '0772994657');
 INSERT INTO DevelopmentStudio VALUES('D1DQBF02', 'Crytek', 'Coburg, Germany', '9561265678');
@@ -240,29 +202,13 @@ INSERT INTO DevelopmentStudio VALUES('D1DQBF06', 'Treyarch', 'Santa Monica, USA'
 INSERT INTO DevelopmentStudio VALUES('D1DQBF07', 'Nintendo EPD', 'Kyoto, Japan', '0772981218');
 INSERT INTO DevelopmentStudio VALUES('D1DQBF08', 'Nintendo EAD Tokyo', 'Tokyo, Japan', '0422148684');
 
-CREATE TABLE IF NOT EXISTS Publisher (
-	`PublisherID` varchar(8) NOT NULL, 
-	`Name` varchar(30) NOT NULL,
-	`Location` char(30) NOT NULL,
-	`Phone` char(10) NOT NULL,
-	CONSTRAINT PK_PublisherID PRIMARY KEY(PublisherID)
-);
-
 /* inserting data into table Publisher*/
 INSERT INTO Publisher VALUES('DSP1DQ01', 'Nintendo', 'Japan', '1800255370');
 INSERT INTO Publisher VALUES('DSP1DQ02', 'Eletronic Arts', 'North America', '0208083219');
 INSERT INTO Publisher VALUES('DSP1DQ03', 'Activision', 'North America', '1310255200');
 INSERT INTO Publisher VALUES('DSP1DQ04', 'Sega', 'Japan', ' 0044845301');
 
-
-CREATE TABLE IF NOT EXISTS SubFranchise (
-	`SubfranchiseName` varchar(30) NOT NULL,
-	`FranchiseName` varchar(30) NOT NULL,
-	`Release` datetime NOT NULL,
-	CONSTRAINT PK_Subfranchise PRIMARY KEY(SubfranchiseName),
-	CONSTRAINT FK_Franchise FOREIGN KEY (FranchiseName) REFERENCES GameFranchise(FranchiseName) ON UPDATE CASCADE 	
-);
-
+/* inserting data into table SubFranchise*/
 INSERT INTO SubFranchise VALUES('Zelda 2D', 'The Legend of Zelda', '21-02-1986');
 INSERT INTO SubFranchise VALUES('Zelda 3D', 'The Legend of Zelda', '21-11-1998');
 INSERT INTO SubFranchise VALUES('Mario Kart', 'Mario', '27-08-1992');
@@ -274,21 +220,6 @@ INSERT INTO SubFranchise VALUES('Call of Duty', 'Call of Duty', '29-10-2003');
 INSERT INTO SubFranchise VALUES('Sonic 2D', 'Sonic', '23-06-1991');
 INSERT INTO SubFranchise VALUES('Sonic 3D', 'Sonic', '07-11-1996');
 INSERT INTO SubFranchise VALUES('Sonic Race', 'Sonic', '18-03-1994');
-
-/* Intersection Tables*/
---//////////////////////
-
-CREATE TABLE IF NOT EXISTS GameData (
-	`DSID` varchar(8) NOT NULL,
-	`PublisherID` varchar(8) NOT NULL,
-	`SubfranchiseName` varchar(30) NOT NULL,
-	`Title` char(25) NOT NULL,
-	`Genre` char(15) NOT NULL,
-	CONSTRAINT PK_Title PRIMARY KEY (Title),
-	CONSTRAINT FK_DSID FOREIGN KEY (DSID) REFERENCES DevelopmentStudio(DSID),
-	CONSTRAINT FK_PublisherID FOREIGN KEY (PublisherID) REFERENCES Publisher(PublisherID),
-	CONSTRAINT FK_SubFranchise FOREIGN KEY (SubfranchiseName) REFERENCES SubFranchise(SubfranchiseName)
-);
 
 /* inserting data into table GameData*/
 INSERT INTO GameData VALUES('D1DQBF01', 'DSP1DQ01', 'Zelda 2D', 'Zelda II: The Adventure of Link', 'Adventure');
@@ -320,40 +251,13 @@ INSERT INTO GameData VALUES('D1DQBF04', 'DSP1DQ04', 'Sonic 3D', 'Sonic and the b
 INSERT INTO GameData VALUES('D1DQBF04', 'DSP1DQ04', 'Sonic 3D', 'Sonic Forces', 'Platformer');
 INSERT INTO GameData VALUES('D1DQBF04', 'DSP1DQ04', 'Sonic Race', 'Sonic Riders', 'Race');
 
-/* Lower level entities*/
---//////////////////////
-CREATE TABLE IF NOT EXISTS ConsoleLine (
-	`ConsoleLineID` varchar(8) NOT NULL, 
-	`Name` varchar(20) NOT NULL, /* can’t be NULL */
-	`ReleaseDate` datetime NOT NULL,
-	`Bitsize` tinyint NOT NULL,
-	CONSTRAINT PK_ConsoleLineID PRIMARY KEY(ConsoleLineID) 
-);
-
 /* inserting data into table ConsoleLine*/
 INSERT INTO ConsoleLine VALUES('CSP1DQ01', 'Nintendo Home', '21-11-1982', 8);
 INSERT INTO ConsoleLine VALUES('CSP1DQ02', 'Nintendo HandHeld', '21-04-1989', 8);
 INSERT INTO ConsoleLine VALUES('CSP1DQ03', 'Playstation','3-12-1996', 32);
 INSERT INTO ConsoleLine VALUES('CSP1DQ04', 'Xbox', '15-11-2001', 64);
 
-/* supertype of isa-hierarchy */
-/* uses a composite primary key, since foreign keys of the child tables are also composite keys */
-/* the salary is the average year salary*/
-/* TEXT CHECK is used similarly to ENUM datatype */
-CREATE TABLE IF NOT EXISTS Worker (
-	`UserID` varchar(8) NOT NULL,
-    `DSID` varchar(8) NOT NULL, 
-    `Function` TEXT CHECK(Function IN ('president','director','designer')) NOT NULL,
-	`FirstName` char(15) NOT NULL,
-	`LastName` char(15) NOT NULL,
-	`Street` char(15) NOT NULL,
-	`Phone` char(10) NOT NULL,
-	`DateOfBirth` datetime NOT NULL,
-	`Salary` INT NOT NULL,
-    CONSTRAINT PK_UserID PRIMARY KEY (UserID, Function),
-	CONSTRAINT FK_DSID FOREIGN KEY (DSID) REFERENCES DevelopmentStudio(DSID) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
+/* inserting data into table Worker*/
 INSERT INTO Worker VALUES('U0001NAK', 'D1DQBF01', 'president', 'Hiroshi', 'Ikeda', '193-1023 Nishishinjuku Shinjuku Mitsuibiru(43-kai)', '7095025502', '03-06-1952', 2000000);
 INSERT INTO Worker VALUES('U0002NAK', 'D1DQBF01', 'director', 'Kosuke', 'Yabuki', '463-1082 Kisshoin Higashisunanocho', '8010421563', '05-11-1968', 1000000);
 INSERT INTO Worker VALUES('U0003NAK', 'D1DQBF01', 'designer', 'Masaaki', 'Ishikawa', '322-1091 Miyamacho Nagao', '8061204776', '14-12-1970',100000);
@@ -386,16 +290,7 @@ INSERT INTO Worker VALUES('U0004NAT', 'D1DQBF08', 'director', 'Hidemaro', 'Fujib
 INSERT INTO Worker VALUES('U0005NAT', 'D1DQBF08', 'designer', 'Takashi', 'Tezuka', '258-1104 Kotta', '9094948644', '17-11-1960', 2600000);
 INSERT INTO Worker VALUES('U0006NAT', 'D1DQBF08', 'designer', 'Hiroyuki', 'Kimura', '191-1178 Konan Shinagawaintashiteia-to(27-kai)', '8041625246', '01-06-1965', 156000);
 
-/* subtype of of isa-hierarchy */
-/* experience is the amount of years worked at a studio*/
-CREATE TABLE IF NOT EXISTS DevelopmentDirector (
-	`UserID` varchar(8) NOT NULL,
-    `Function` TEXT CHECK(Function IN ('director')) NOT NULL,
-	`Experience` tinyint, 
-	CONSTRAINT PK_UserID PRIMARY KEY (UserID),
-	CONSTRAINT FK_Job FOREIGN KEY (UserID, Function) REFERENCES Worker(UserID, Function) ON DELETE CASCADE 
-);
-
+/* inserting data into table DevelopmentDirector*/
 INSERT INTO DevelopmentDirector VALUES('U0002NAK', 'director', 24);
 INSERT INTO DevelopmentDirector VALUES('U0003GCR', 'director', 13);
 INSERT INTO DevelopmentDirector VALUES('U0002INF', 'director', 17);
@@ -411,16 +306,7 @@ INSERT INTO DevelopmentDirector VALUES('U0002NAT', 'director', 22);
 INSERT INTO DevelopmentDirector VALUES('U0003NAT', 'director', 17);
 INSERT INTO DevelopmentDirector VALUES('U0004NAT', 'director', 11);
 
-/* subtype of of isa-hierarchy */
-/* experience is the amount of years worked at a studio*/
-CREATE TABLE IF NOT EXISTS GameDesigner (
-	`UserID` varchar(8) NOT NULL,
-    `Function` TEXT CHECK(Function IN ('designer')) NOT NULL,
-	`Experience` tinyint,
-	CONSTRAINT PK_UserID PRIMARY KEY (UserID),
-	CONSTRAINT FK_Job FOREIGN KEY (UserID, Function) REFERENCES Worker(UserID, Function) ON DELETE CASCADE 
-);
-
+/* inserting data into table GameDesigner*/
 INSERT INTO GameDesigner VALUES('U0003NAK', 'designer', 15);
 INSERT INTO GameDesigner VALUES('U0004GCR', 'designer', 9);
 INSERT INTO GameDesigner VALUES('U0003INF', 'designer', 21);
@@ -429,16 +315,6 @@ INSERT INTO GameDesigner VALUES('U0003SSU', 'designer', 16);
 INSERT INTO GameDesigner VALUES('U0005TRA', 'designer', 8);
 INSERT INTO GameDesigner VALUES('U0005NAT', 'designer', 25);
 INSERT INTO GameDesigner VALUES('U0006NAT', 'designer', 23);
-
-
-/* subtype of of isa-hierarchy */
-CREATE TABLE IF NOT EXISTS President (
-	`UserID` varchar(8) NOT NULL,
-    `Function` TEXT CHECK(Function IN ('president')) NOT NULL,
-	`TimeframeOfPresidency` varchar(10),
-	CONSTRAINT PK_UserID PRIMARY KEY (UserID),
-	CONSTRAINT FK_Job FOREIGN KEY (UserID, Function) REFERENCES Worker(UserID, Function) ON DELETE CASCADE 
-);
 
 /* inserting data into table President*/
 INSERT INTO President VALUES('U0001NAK', 'president', '1983-1990');
@@ -451,17 +327,9 @@ INSERT INTO President VALUES('U0001TRA', 'president', '2008-now');
 INSERT INTO President VALUES('U0001NPK', 'president', '2015-2018');
 INSERT INTO President VALUES('U0001NAT', 'president', '2002-2015');
 
-CREATE TABLE IF NOT EXISTS GameFranchise (
-	`FranchiseName` varchar(30) NOT NULL,
-	`Release` datetime NOT NULL,	
-	CONSTRAINT PK_GameFranchise PRIMARY KEY(FranchiseName)
-);
-
 /* inserting data into table GameFranchise*/
 INSERT INTO GameFranchise VALUES('The Legend of Zelda', '21-02-1986');
 INSERT INTO GameFranchise VALUES('Mario', '26-07-1983');
 INSERT INTO GameFranchise VALUES('Crysis', '13-11-2007');
 INSERT INTO GameFranchise VALUES('Call of Duty', '29-10-2003');
 INSERT INTO GameFranchise VALUES('Sonic', '23-06-1991');
-
-
