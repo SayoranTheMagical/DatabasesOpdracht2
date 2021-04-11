@@ -5,10 +5,8 @@ For this query it is assumed that the user is only interested in games on the Ni
 The necessarily information that needs to be returned is the title of the game.
 Like query 1, using joins (using INNER JOIN) the table GameData and Game can be joined 
 and the result with table System. Then a clause needs to be added that specifies that only Nintendo 3DS should be selected (using Where).
-Then lastly it must be prevented that games that are not on exclusively on the Nintendo 3DS are returned that can be done with EXPECT.
- */
+Then lastly it must be prevented that games that are not on exclusively on the Nintendo 3DS are returned that can be done with EXPECT.*/
 
---Query A
 SELECT GameData.Title FROM GameData
 INNER JOIN Game ON GameData.Title = Game.Title 
 INNER JOIN System ON System.SystemID = Game.SystemID

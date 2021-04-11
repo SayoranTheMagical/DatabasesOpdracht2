@@ -1,17 +1,20 @@
 --Query 1
-/*This query is meant for when someone wants to know which games are playable on a specific system.
-So for this query it was assumed that a person is looking for Playstation 4 games.
-First determine the relevant information that  only needs to get selected: the name of the game and the system.
-Then the whole table GameData is joined with its intersection table (table Game, that contains the SystemID)
-making use of the column that matches (Title) (using INNER JOIN; returns all the rows that have a match). 
-The result (left table, values we want to preserve) is then joined with the table System (right table) containing the system name ( using LEFT JOIN).
-The LEFT JOIN is also done  based on a matching columnn (SystemID), but unlike inner it always returns the left table by default even if there are no matches.
-Lastly a WHERE clause is used so that only playstation 4 games are going to be selected (ORDER BY is used for a cleaner view).*/
+/*This query is meant for when someone wants to know how long a president is a president at a specific studio.
+For this query it assumed that we want to know what the time frame of presidency is of all presidents at Crytek.
+First determine the relevant information that  only needs to get selected: the name of person, (job)function and the timeframe of presidency.
+The table DevelopmentStudio is joined with the table Worker to make it possible to select workers of a specific studio.
+The table Worker (left table, values we want to preserve) is then joined with the table President (right table) containing the timeframe of presidency ( using LEFT JOIN).
+The LEFT JOIN is also done based on a matching columnn (UserID), but unlike inner it always returns the left table by default even if there are no matches.
+Meaning that if there is no-match it still prints out the row with no-match, but with the right table values being NULL.
+Since all workers of a studio are selected ofcourse not all workers are presidents. 
+As a result the workers that are not a president gets a NULL-value returned, because they do not have a timeframe of presidency.*/
 
-SELECT GameData.Title, System.Name FROM GameData
-INNER JOIN Game ON GameData.Title = Game.Title 
-LEFT JOIN System ON System.SystemID = Game.SystemID
-WHERE System.Name = "Playstation 4"
-ORDER BY GameData.Title;
+SELECT Worker.FirstName, Worker.LastName, Worker.Function, 
+       President.TimeframeOfPresidency 
+       FROM Worker   
+INNER JOIN DevelopmentStudio ON DevelopmentStudio.DSID = Worker.DSID          
+LEFT JOIN President ON President.UserID = Worker.UserID
+WHERE DevelopmentStudio = "Crytek";
+
 
 

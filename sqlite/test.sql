@@ -242,9 +242,9 @@ INSERT INTO DevelopmentStudio VALUES('D1DQBF08', 'Nintendo EAD Tokyo', 'Tokyo, J
 
 CREATE TABLE IF NOT EXISTS Publisher (
 	`PublisherID` varchar(8) NOT NULL, 
-	`Name` varchar(30) NOT NULL,
-	`Location` char(30) NOT NULL,
-	`Phone` char(10) NOT NULL,
+	`Name` varchar(30),
+	`Location` char(30),
+	`Phone` char(10),
 	CONSTRAINT PK_PublisherID PRIMARY KEY(PublisherID)
 );
 
@@ -253,6 +253,7 @@ INSERT INTO Publisher VALUES('DSP1DQ01', 'Nintendo', 'Japan', '1800255370');
 INSERT INTO Publisher VALUES('DSP1DQ02', 'Eletronic Arts', 'North America', '0208083219');
 INSERT INTO Publisher VALUES('DSP1DQ03', 'Activision', 'North America', '1310255200');
 INSERT INTO Publisher VALUES('DSP1DQ04', 'Sega', 'Japan', ' 0044845301');
+
 
 CREATE TABLE IF NOT EXISTS SubFranchise (
 	`SubfranchiseName` varchar(30) NOT NULL,
@@ -434,7 +435,7 @@ INSERT INTO GameDesigner VALUES('U0006NAT', 'designer', 23);
 CREATE TABLE IF NOT EXISTS President (
 	`UserID` varchar(8) NOT NULL,
     `Function` TEXT CHECK(Function IN ('president')) NOT NULL,
-	`TimeframeOfPresidency` varchar(10) NOT NULL,
+	`TimeframeOfPresidency` varchar(10),
 	CONSTRAINT PK_UserID PRIMARY KEY (UserID),
 	CONSTRAINT FK_Job FOREIGN KEY (UserID, Function) REFERENCES Worker(UserID, Function) ON DELETE CASCADE 
 );

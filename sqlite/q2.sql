@@ -10,7 +10,6 @@ the Game- and GameData table.
 We used the except beforehand and looked for all games playable on the Xbox 360 so that at the end only the games,
 which are not playable on this system remain.*/
 
---Default Query A  with WHERE not possible, EXCEPT-query has duplicate rows
 SELECT GameData.Title FROM GameData
 EXCEPT
 SELECT GameData.Title FROM System
